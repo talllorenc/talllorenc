@@ -1,4 +1,5 @@
 "use client";
+import MusicPanel from "@/components/AdminPanel/AdminPanel";
 import { useState, useEffect } from "react";
 
 const AdminPage = () => {
@@ -56,16 +57,16 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="container flex flex-col justify-center items-center">
+    <div className="">
+      <div className="container flex items-center justify-center">
         {isLogIn ? (
-          <>
-            <h1>Личный кабинет</h1>
-            <button onClick={onLogout}>Выйти</button>
-          </>
+          <div className="mt-[52px] w-full">
+            <h1 className="font-medium text-[25px] border-b border-[#4c4b4b]">Administration panel</h1>
+            <MusicPanel onLogout={onLogout}/>
+          </div>
         ) : (
-          <div className="w-full max-w-md space-y-8 text-center">
-            <span className="text-[20px]">Administration panel</span>
+          <div className="w-full max-w-md space-y-8 text-center flex flex-col items-center justify-center h-screen">
+            <span className="text-[18px]">Administration panel</span>
             <form method="POST" onSubmit={onSubmit} className="mt-8 space-y-6">
               <input
                 id="username"
