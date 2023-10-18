@@ -1,8 +1,9 @@
-
 const PlaylistPage = () => {
   return (
-    <div>PlaylistPage</div>
-  )
-}
+    <div>
+      PlaylistPage
+    </div>
+  );
+};
 
-export default PlaylistPage
+export default PlaylistPage;
