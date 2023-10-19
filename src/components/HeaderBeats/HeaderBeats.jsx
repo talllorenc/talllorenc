@@ -1,13 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import React from "react";
 import MainPlayer from "../MainPlayer/MainPlayer";
 import Image from "next/image";
+import { AudioContext } from "@/context/AudioProvider/AudioProvider";
 
 const HeaderBeats = () => {
+  const { isPlaying, setIsPlaying, currentAudio, setCurrentAudio } = useContext(AudioContext);
   const [beats, setBeats] = useState([]);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentAudio, setCurrentAudio] = useState("");
+  const [volume, setVolume] = useState(1);
   const audioRef = React.createRef();
 
   useEffect(() => {
@@ -40,6 +41,17 @@ const HeaderBeats = () => {
     }
   };
 
+  const toggleMute = () => {
+    const audio = audioRef.current;
+    if (audio.volume === 0) {
+        audio.volume = volume || 0.5;  
+        setVolume(audio.volume);
+    } else {
+        audio.volume = 0;
+        setVolume(0);
+    }
+};
+
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -51,6 +63,12 @@ const HeaderBeats = () => {
 
     audio.onended = () => setIsPlaying(false);
   }, [isPlaying, currentAudio]);
+
+  const changeVolume = (value) => {
+    const audio = audioRef.current;
+    audio.volume = value;
+    setVolume(value);
+  };
 
   return (
     <div className="grid grid-cols-5 gap-3">
@@ -72,7 +90,7 @@ const HeaderBeats = () => {
                     key={tag}
                     className="text-[14px] bg-[#3c3b3b] p-[2px] rounded"
                   >
-                    {tag}
+                    #{tag}
                   </span>
                 ))}
               </span>
@@ -101,9 +119,12 @@ const HeaderBeats = () => {
       <audio ref={audioRef} src={currentAudio}></audio>
       {currentAudio && (
         <MainPlayer
+        isPlaying={isPlaying}
           currentBeat={beats.find((beat) => beat.audio === currentAudio)}
-          isPlaying={isPlaying}
           toggleAudio={toggleAudio}
+          volume={volume}
+          changeVolume={changeVolume}
+          toggleMute={toggleMute}
         />
       )}
     </div>
