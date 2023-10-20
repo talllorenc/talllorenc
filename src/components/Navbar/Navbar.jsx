@@ -21,14 +21,19 @@ const links = [
     title: "Contact",
     url: "/contact",
   },
+  {
+    id: 4,
+    title: "Records",
+    url: "/recordsPage",
+  },
 ];
 
 const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 w-full p-2 backdrop-blur bg-opacity-50">
-      <div className="flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full p-2 backdrop-blur bg-opacity-50 z-50">
+      <div className="flex justify-between items-center z-999">
         <Link href="/">
           <span>TALLLORENC</span>
         </Link>

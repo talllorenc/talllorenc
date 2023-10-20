@@ -1,4 +1,5 @@
 import HeaderPage from "./header/page";
+import RecordsPage from "./records/page";
 import TracksPage from "./tracks/page";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <HeaderPage/>
       <TracksPage/>
+      <RecordsPage/>
     </div>
   )
 }

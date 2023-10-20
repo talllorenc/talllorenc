@@ -76,17 +76,17 @@ const LatestTrack = () => {
             <div className="flex px-2 justify-between">
               <div className="flex flex-col justify-between">
                 <div className="flex flex-col">
-                  <span className="text-[40px] font-bold">{track.title}</span>
-                  <span className="text-[#8c8b8b] text-[25px] font-bold">
-                    {track.bpm}
+                  <span className="text-[40px] font-bold z-30 ">{track.title}</span>
+                  <span className="text-[#8c8b8b] text-[25px] font-bold z-30">
+                    {track.bpm}BPM
                   </span>
-                  <span className="text-[25px] text-[#8c8b8b] font-medium">
+                  <span className="text-[25px] text-[#8c8b8b] font-medium z-30">
                     talllorenc
                   </span>
                 </div>
                 <div className="text-[15px] p-2 flex gap-[5px]">
                   {track.tags.map((tag) => (
-                    <span className="bg-[#2c2b2b] p-1 border border-[#4c4b4b]">
+                    <span className="bg-[#2c2b2b] p-1 border border-[#4c4b4b] z-30">
                       #{tag}
                     </span>
                   ))}
@@ -95,12 +95,12 @@ const LatestTrack = () => {
             </div>
           </div>
           <div></div>
-          <div className="text-[40px] flex flex-col items-center justify-center">
-            <span className="p-2 text-[#F75380] font-bold">Latest track</span>
+          <div className="text-[40px] flex flex-col items-center justify-center bg-black z-30 rounded-lg backdrop-blur bg-opacity-10">
+            <span className="p-2 text-[#F75380] font-bold z-30">Latest track</span>
             <a
               download
               href={track.audio}
-              className="text-[20px] border-[3px] border-[#F75370] rounded-lg bg-black px-1 py-[2px] flex items-center gap-1 transition-[300ms] hover:border-white "
+              className="z-30 text-[20px] border-[3px] border-[#F75370] rounded-lg bg-black px-1 py-[2px] flex items-center gap-1 transition-[300ms] hover:border-white "
             >
               download
               <Image

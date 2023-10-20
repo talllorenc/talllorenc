@@ -3,6 +3,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import Providers from "@/components/SigninButton/Providers";
 import { AudioProvider } from "@/context/AudioProvider/AudioProvider";
+import Footer from "@/components/Footer/Footer";
 
 const montserrat = Montserrat({
   weight: ["300", "400", "500", "700"],
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           <div className="main_container">
             <Navbar />
             {children}
+            <Footer/>
           </div>
           </AudioProvider>
         </Providers>

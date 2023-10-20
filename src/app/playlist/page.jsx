@@ -1,7 +1,9 @@
+import PlaylistBeats from "@/components/PlaylistBeats/PlaylistBeats";
+
 const PlaylistPage = () => {
   return (
-    <div>
-      PlaylistPage
+    <div className="block mt-[56px]">
+      <PlaylistBeats/>
     </div>
   );
 };

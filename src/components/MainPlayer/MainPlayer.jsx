@@ -1,9 +1,19 @@
+"use client"
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const MainPlayer = ({ currentBeat, isPlaying, toggleAudio, volume, changeVolume, toggleMute }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100); 
 
+    return () => clearTimeout(timer); 
+  }, []);
+  
   return (
-    <div className="fixed bottom-0 container backdrop-blur bg-opacity-50 rounded-xl">
+    <div className={`fixed bottom-0 container backdrop-blur bg-opacity-50 rounded-xl transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <div className="flex p-[5px]">
         <div className="flex w-1/3 justify-center items-center ">
           <img
@@ -63,14 +73,14 @@ const MainPlayer = ({ currentBeat, isPlaying, toggleAudio, volume, changeVolume,
               alt="next img"
             />
           </a>
-          <button className="border-[2px] p-2 rounded-lg hover:border-blue-600">
+          {/* <button className="border-[2px] p-2 rounded-lg hover:border-blue-600">
             <Image
               src="/header/share.png"
               width={20}
               height={20}
               alt="next img"
             />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
