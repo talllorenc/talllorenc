@@ -1,3 +1,4 @@
+import ContactForm from "@/components/ContactForm/ContactForm";
 import HeaderPage from "./header/page";
 import RecordsPage from "./records/page";
 import TracksPage from "./tracks/page";

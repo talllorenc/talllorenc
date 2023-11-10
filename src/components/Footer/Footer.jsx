@@ -33,11 +33,6 @@ const links = [
   },
   {
     id: 3,
-    title: "Contact",
-    url: "/contact",
-  },
-  {
-    id: 4,
     title: "Records",
     url: "/recordsPage",
   },
@@ -45,7 +40,7 @@ const links = [
 const Footer = () => {
 
   return (
-    <footer className="border-t border-black dark:border-white">
+    <footer className="border-t-2 border-[#4c4b4b]">
       <div className="mx-auto max-w-7xl overflow-hidden py-6 px-4 sm:px-6 lg:px-8">
         <nav className="mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
           {links.map((item) => (

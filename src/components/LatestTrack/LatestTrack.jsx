@@ -38,15 +38,15 @@ const LatestTrack = () => {
   };
 
   return (
-    <div>
+    <div className="flex">
       {isLoading ? (
         <div>Loading...</div>
       ) : error ? (
         <div>Error: {error}</div>
       ) : (
-        <div className="flex p-4 justify-between mt-[70px]">
-          <div className="flex">
-            <div className="relative">
+        <div className="py-4 mt-[70px] flex items-center justify-center text-center md:text-left md:flex md:justify-between w-full">
+          <div className="flex items-center flex-col in:flex in:flex-row">
+            <div className="relative flex items-center">
               <img
                 src={track.photoUrl}
                 alt="beat cover"
@@ -63,20 +63,23 @@ const LatestTrack = () => {
                     src="/header/pause-button(1).png"
                     width={60}
                     height={60}
+                    alt="pause button"
                   />
                 ) : (
                   <Image
                     src="/header/free-icon-play-6364350.png"
                     width={60}
                     height={60}
+                    alt="play button"
                   />
                 )}
               </button>
             </div>
+
             <div className="flex px-2 justify-between">
-              <div className="flex flex-col justify-between">
+              <div className="flex flex-col md:justify-between">
                 <div className="flex flex-col">
-                  <span className="text-[40px] font-bold z-30 ">{track.title}</span>
+                  <span className="text-[30px] in:text-[40px] font-bold z-30 ">{track.title}</span>
                   <span className="text-[#8c8b8b] text-[25px] font-bold z-30">
                     {track.bpm}BPM
                   </span>
@@ -86,7 +89,7 @@ const LatestTrack = () => {
                 </div>
                 <div className="text-[15px] p-2 flex gap-[5px]">
                   {track.tags.map((tag) => (
-                    <span className="bg-[#2c2b2b] p-1 border border-[#4c4b4b] z-30">
+                    <span key={tag} className="bg-[#2c2b2b] p-1 border border-[#4c4b4b] z-30">
                       #{tag}
                     </span>
                   ))}
@@ -94,9 +97,9 @@ const LatestTrack = () => {
               </div>
             </div>
           </div>
-          <div></div>
-          <div className="text-[40px] flex flex-col items-center justify-center bg-black z-30 rounded-lg backdrop-blur bg-opacity-10">
-            <span className="p-2 text-[#F75380] font-bold z-30">Latest track</span>
+
+          <div className="hidden flex flex-col md:flex text-[40px] items-center justify-center bg-black z-30 rounded-lg backdrop-blur bg-opacity-10 p-8">
+            <span className="text-[#F75380] font-bold z-30">Latest track</span>
             <a
               download
               href={track.audio}

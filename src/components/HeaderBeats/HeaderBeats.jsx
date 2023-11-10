@@ -1,15 +1,20 @@
 "use client";
-import { useEffect, useState, useContext } from "react";
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import MainPlayer from "../MainPlayer/MainPlayer";
 import Image from "next/image";
 import { AudioContext } from "@/context/AudioProvider/AudioProvider";
 
 const HeaderBeats = () => {
-  const { isPlaying, setIsPlaying, currentAudio, setCurrentAudio } = useContext(AudioContext);
+  const {
+    isPlaying,
+    setIsPlaying,
+    currentAudio,
+    setCurrentAudio,
+    toggleMute,
+    changeVolume,
+    volume,
+  } = useContext(AudioContext);
   const [beats, setBeats] = useState([]);
-  const [volume, setVolume] = useState(1);
-  const audioRef = React.createRef();
 
   useEffect(() => {
     const fetchBeats = async () => {
@@ -30,10 +35,7 @@ const HeaderBeats = () => {
   }, []);
 
   const toggleAudio = (audioUrl) => {
-    const audio = audioRef.current;
-
     if (isPlaying && currentAudio === audioUrl) {
-      audio.pause();
       setIsPlaying(false);
     } else {
       setCurrentAudio(audioUrl);
@@ -41,41 +43,17 @@ const HeaderBeats = () => {
     }
   };
 
-  const toggleMute = () => {
-    const audio = audioRef.current;
-    if (audio.volume === 0) {
-        audio.volume = volume || 0.5;  
-        setVolume(audio.volume);
-    } else {
-        audio.volume = 0;
-        setVolume(0);
-    }
-};
-
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    if (isPlaying) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-
-    audio.onended = () => setIsPlaying(false);
-  }, [isPlaying, currentAudio]);
-
-  const changeVolume = (value) => {
-    const audio = audioRef.current;
-    audio.volume = value;
-    setVolume(value);
-  };
-
   return (
-    <div className="grid grid-cols-5 gap-3">
+    <div className="grid md:grid-cols-5 gap-3">
       {beats.map((beat) => (
         <div
           key={beat._id}
-          className="border border-[#4c4b4b] rounded-lg relative"
+          className={`border-2 ${
+            isPlaying && currentAudio === beat.audio
+              ? "border-[#F75370] border-[3px] bottom-2"
+              : "border-[#4c4b4b]"
+          } rounded-lg bg-black hover:border-[3px] hover:border-[#F75370]`}
+          onClick={() => toggleAudio(beat.audio)}
         >
           <div className="flex flex-col">
             <img src={beat.photoUrl} alt="" className="w-full rounded-lg" />
@@ -95,31 +73,15 @@ const HeaderBeats = () => {
                 ))}
               </span>
               <button onClick={() => toggleAudio(beat.audio)}>
-                {isPlaying && currentAudio === beat.audio ? (
-                  <Image
-                  src="/header/pause-button(1).png"
-                  width={70}
-                  height={70}
-                  className="absolute top-[92px] left-[92px] "
-                  />
-                ) : (
-                  <Image
-                    src="/header/free-icon-play-6364350.png"
-                    width={70}
-                    height={70}
-                    className="absolute top-[92px] left-[92px] "
-                  />
-                )}
+                {isPlaying && currentAudio === beat.audio ? <></> : <></>}
               </button>
             </div>
           </div>
         </div>
       ))}
-
-      <audio ref={audioRef} src={currentAudio}></audio>
       {currentAudio && (
         <MainPlayer
-        isPlaying={isPlaying}
+          isPlaying={isPlaying}
           currentBeat={beats.find((beat) => beat.audio === currentAudio)}
           toggleAudio={toggleAudio}
           volume={volume}

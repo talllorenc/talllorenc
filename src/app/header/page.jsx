@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const HeaderPage = () => {
   return (
-    <div className="flex justify-center items-center h-screen block p-[16px] z-30">
-      <div className="relative overflow-hidden container border border-[#5c5b5b] rounded-lg z-30">
+    <div className="flex justify-center items-center block p-[16px] mb-32 pt-16 in:pt-36">
+      <div className="relative overflow-hidden container border border-[#5c5b5b] rounded-lg">
         {/* Video Background */}
         <video
           autoPlay
@@ -16,11 +16,11 @@ const HeaderPage = () => {
           src="/header/vecteezy_pink-background-pink-cloud-background_27880279_471.mov"
         ></video>
 
-        <div className="flex flex-col p-4 items-center z-30">
-          <span className="text-[44px] font-medium z-30">
+        <div className="text-center flex flex-col p-4 items-center z-30">
+          <span className="text-[22px] in:text-[40px] font-medium z-30">
             Welcome everyone to my self-written media library
           </span>
-          <span className="text-[33px] font-italic z-30">
+          <span className="text-[22px] in:text-[30px] font-italic z-30">
             I am{" "}
             <span className="font-sans font-medium text-[#F75380] z-30">
               talllorenc
