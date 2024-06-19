@@ -35,7 +35,7 @@ export function MobileHeader({
     <AnimatePresence>
       {isMobileMenuOpen && (
         <motion.div
-          className="md:hidden fixed top-0 left-0 w-full h-screen flex"
+          className="md:hidden fixed top-0 left-0 w-full h-screen flex z-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -43,14 +43,14 @@ export function MobileHeader({
           onClick={closeMobileMenu}
         >
           <motion.div
-            className="bg-[#031126] w-[200px] fixed top-[68px] right-0 h-screen"
-            initial={{ x: "100%", opacity: 0 }}
+            className="bg-white w-[200px] fixed top-[68px] left-0 h-screen"
+            initial={{ x: "-100%", opacity: 0 }}
             animate={{
               x: isMobileMenuOpen ? 0 : "100%",
               opacity: isMobileMenuOpen ? 1 : 0,
             }}
             transition={{ duration: 0.2 }}
-            exit={{ x: "100%", opacity: 0 }}
+            exit={{ x: "-100%", opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col">
@@ -69,6 +69,7 @@ export function MobileHeader({
                 <Link
                   href="/cart"
                   className="flex items-center border-2 border-gray-500 rounded-xl px-4 py-1"
+                  onClick={closeMobileMenu}
                 >
                   <FaCartPlus className="" />
                 </Link>
@@ -76,6 +77,7 @@ export function MobileHeader({
                 <Link
                   href="/login"
                   className="hover:-translate-y-1 transition-all duration-200 flex items-center border-2 border-gray-500 rounded-xl px-4 py-1"
+                  onClick={closeMobileMenu}
                 >
                   <FaRegUser className="" />
                 </Link>

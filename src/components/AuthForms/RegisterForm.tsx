@@ -7,8 +7,6 @@ import { IRegisterUser } from "@/types/AuthForms";
 import { FaArrowRight, FaInfoCircle } from "react-icons/fa";
 import Link from "next/link";
 import { AuthSocials } from "../AuthSocials/AuthSocials";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { Input } from "../ui/Input";
 
 const loginRules = /^[A-Za-z0-9]+$/;
@@ -37,27 +35,6 @@ const basicSchema = yup.object().shape({
 export function RegisterForm() {
   const router = useRouter();
 
-  const mutation = useMutation({
-    mutationFn: async (regObj: {
-      name: string;
-      email: string;
-      password: string;
-      confirmPassword: string;
-    }) => {
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/register",
-        regObj
-      );
-      return response.data;
-    },
-    onSuccess: () => {
-      router.push("/");
-    },
-    onError: (error) => {
-      console.error("Registration error:", error);
-    },
-  });
-
   const {
     values,
     handleChange,
@@ -76,7 +53,7 @@ export function RegisterForm() {
     validationSchema: basicSchema,
     onSubmit: async (values: IRegisterUser, { resetForm }) => {
       try {
-        mutation.mutate(values);
+        console.log(values);
       } catch (error: any) {}
     },
   });
