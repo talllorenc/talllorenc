@@ -3,6 +3,7 @@
 import { Fira_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header/Header";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Fira_Mono({
   subsets: ["cyrillic", "latin"],
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-            <Header />
-            {children}
+        <SessionProvider>
+          <Header />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

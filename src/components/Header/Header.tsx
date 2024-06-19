@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaRegUser, FaCartPlus, FaBars, FaTimes } from "react-icons/fa";
 import { IHeaderLink } from "@/types/Header";
 import { MobileHeader } from "./MobileHeader";
+import { AuthButton } from "../AuthButton/AuthButton";
 
 const headerLinks: IHeaderLink[] = [
   {
@@ -62,41 +63,8 @@ export function Header() {
             <p className="font-bold">$0.00</p>
           </Link>
 
-          <Link
-            href="/login"
-            className="transition-all duration-200  bg-[#F19CBB] text-white font-bold hover:shadow-buttonPinkBrick shadow-buttonBlack flex items-center gap-2 rounded px-4 py-1"
-          >
-            <FaRegUser className="text-xl" />
-            <p className="font-bold">Log in </p>
-          </Link>
+          <AuthButton/>
         </div>
-        {/* <nav className="hidden md:flex items-center gap-4">
-          <ul className="flex items-center gap-4">
-            {headerLinks.map((link) => (
-              <li key={link.id} className="hover:text-[#F19CBB] transition-all duration-200">
-                <Link href={link.path}>{link.title}</Link>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex items-center gap-2 border-l border-gray-500">
-            <Link
-              href="/cart"
-              className="flex items-center gap-2 px-4"
-            >
-              <FaCartPlus className="text-xl" />
-              <p className="font-bold">$0.00</p>
-            </Link>
-
-            <Link
-              href="/login"
-              className="transition-all duration-200  bg-[#F19CBB] text-white font-bold hover:shadow-buttonPinkBrick shadow-buttonBlack flex items-center gap-2 rounded px-4 py-1"
-            >
-              <FaRegUser className="text-xl" />
-              <p className="font-bold">Log in </p>
-            </Link>
-          </div>
-        </nav> */}
 
         <MobileHeader
           isMobileMenuOpen={isMobileMenuOpen}
