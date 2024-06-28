@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { signIn } from "next-auth/react"
+import { signIn } from "next-auth/react";
 
 export function GoogleButton() {
-
   return (
-    <div onClick={() => signIn()} className="flex items-center justify-center gap-4 bg-[#ebf5fe] p-2 rounded-md w-full hover:bg-[#b0cde7] hover:cursor-pointer">
+    <div
+      onClick={() => signIn("google", { callbackUrl: "/" })}
+      className="flex items-center justify-center gap-4 bg-[#ebf5fe] p-2 rounded-md w-full hover:bg-[#b0cde7] hover:cursor-pointer"
+    >
       <Image
         src="/SotialsIcons/google.png"
         width={25}

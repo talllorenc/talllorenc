@@ -1,15 +1,16 @@
 import React from "react";
-import { IHeaderLink } from "@/types/Header";
+import { IMenuLink } from "@/types/Menus";
 import Link from "next/link";
 import { FaCartPlus, FaRegUser } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { AuthButton } from "../AuthButton/AuthButton";
 
 interface IMobileHeaderProps {
   isMobileMenuOpen: boolean;
   closeMobileMenu: () => void;
 }
 
-const headerLinks: IHeaderLink[] = [
+const headerLinks: IMenuLink[] = [
   {
     id: 1,
     title: "Home",
@@ -74,13 +75,7 @@ export function MobileHeader({
                   <FaCartPlus className="" />
                 </Link>
 
-                <Link
-                  href="/login"
-                  className="hover:-translate-y-1 transition-all duration-200 flex items-center border-2 border-gray-500 rounded-xl px-4 py-1"
-                  onClick={closeMobileMenu}
-                >
-                  <FaRegUser className="" />
-                </Link>
+                <AuthButton closeMobileMenu={closeMobileMenu} />
               </div>
             </div>
           </motion.div>

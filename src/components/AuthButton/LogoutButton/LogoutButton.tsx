@@ -1,5 +1,5 @@
 import { signOut } from "next-auth/react";
-import { FaRegUser, FaCartPlus, FaBars, FaTimes, FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 
 
 export function LogoutButton() {

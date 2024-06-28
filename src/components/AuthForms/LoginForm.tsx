@@ -8,17 +8,16 @@ import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import { AuthSocials } from "../AuthSocials/AuthSocials";
 import { Input } from "../ui/Input";
-
+import { useState } from "react";
 
 const basicSchema = yup.object().shape({
   email: yup.string().required("*required").email("*invalid format"),
-  password: yup
-    .string()
-    .required("*required"),
+  password: yup.string().required("*required"),
 });
 
 export function LoginForm() {
   const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     values,
@@ -36,8 +35,10 @@ export function LoginForm() {
     validationSchema: basicSchema,
     onSubmit: async (values: ILoginUser) => {
       try {
-        console.log(values);
-      } catch (error: any) {}
+       
+      } catch (error) {
+        console.log(error);  
+      }
     },
   });
   return (
@@ -77,6 +78,8 @@ export function LoginForm() {
         onChange={handleChange}
         onBlur={handleBlur}
       />
+
+      {errorMessage && <div className="text-red-500 mb-2">{errorMessage}</div>}
 
       <button
         type="submit"

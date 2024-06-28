@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { useState } from "react";
-import { FaRegUser, FaCartPlus, FaBars, FaTimes } from "react-icons/fa";
-import { IHeaderLink } from "@/types/Header";
+import { FaCartPlus, FaBars, FaTimes } from "react-icons/fa";
+import { IMenuLink } from "@/types/Menus";
 import { MobileHeader } from "./MobileHeader";
 import { AuthButton } from "../AuthButton/AuthButton";
 
-const headerLinks: IHeaderLink[] = [
+const headerLinks: IMenuLink[] = [
   {
     id: 1,
     title: "Beats",

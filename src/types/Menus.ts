@@ -1,4 +1,4 @@
-export interface IHeaderLink {
+export interface IMenuLink {
   id: number;
   title: string;
   path: string;

@@ -1,5 +1,7 @@
 import { LoginForm } from "@/components/AuthForms/LoginForm";
 import { Metadata } from "next";
+import { getSession } from "../../../lib/getSession";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign in | talllorenc",
@@ -14,7 +16,11 @@ export const metadata: Metadata = {
   },
 };
 
-const RegisterPage = () => {
+const LoginPage = async () => {
+  const session = await getSession();
+  const user = session?.user;
+  if (user) redirect("/");
+  
   return (
     <main className="flex-1 flex flex-col">
       <section className="flex-1">
@@ -26,4 +32,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
