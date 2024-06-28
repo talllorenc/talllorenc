@@ -14,7 +14,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
 
       authorize: async (credentials) => {
-        
+        const email = credentials.email as string | undefined;
+        const password = credentials.password as string | undefined;
+
+        if (!email || !password) {
+          throw new CredentialsSignin("Please provide both email & password");
+        }
+
+
+        const userData = {
+          firstName: "test",
+          lastName: "test",
+          email: "test",
+          role: "test",
+          id: "test",
+        };
+
+        return userData;
       },
     }),
   ],
