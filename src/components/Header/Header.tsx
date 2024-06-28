@@ -63,7 +63,7 @@ export function Header() {
             <p className="font-bold">$0.00</p>
           </Link>
 
-          <AuthButton/>
+          <AuthButton closeMobileMenu={closeMobileMenu} />
         </div>
 
         <MobileHeader
