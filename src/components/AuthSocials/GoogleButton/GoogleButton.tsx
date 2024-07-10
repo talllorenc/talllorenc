@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 export function GoogleButton() {
   return (
     <div
-      onClick={() => signIn("google", { callbackUrl: "/" })}
+      onClick={() => signIn("google", { redirectTo: "/" })}
       className="flex items-center justify-center gap-4 bg-[#ebf5fe] p-2 rounded-md w-full hover:bg-[#b0cde7] hover:cursor-pointer"
     >
       <Image

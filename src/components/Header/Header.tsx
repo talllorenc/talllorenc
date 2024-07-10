@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useState } from "react";
 import { FaCartPlus, FaBars, FaTimes } from "react-icons/fa";
