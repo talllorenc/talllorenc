@@ -24,7 +24,7 @@ export function AuthButton({ closeMobileMenu }: IAuthButtonProps) {
 
   return (
     <div>
-      {session ? (
+      {session?.user ? (
         <button
           onClick={toggleMenu}
           className="transition-all duration-200 border-4 border-[#F19CBB] rounded-full"
