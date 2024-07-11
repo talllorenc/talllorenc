@@ -33,7 +33,7 @@ export function Header() {
   };
 
   return (
-    <header className="w-full ">
+    <header className="w-full fixed top-0 left-0 backdrop-blur z-50">
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <button
