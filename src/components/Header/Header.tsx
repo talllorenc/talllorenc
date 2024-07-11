@@ -6,6 +6,7 @@ import { FaCartPlus, FaBars, FaTimes } from "react-icons/fa";
 import { IMenuLink } from "@/types/Menus";
 import { MobileHeader } from "./MobileHeader";
 import { AuthButton } from "../AuthButton/AuthButton";
+import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
 
 const headerLinks: IMenuLink[] = [
   {
@@ -30,6 +31,7 @@ export function Header() {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
+
   return (
     <header className="w-full ">
       <div className="p-4 flex items-center justify-between">
@@ -45,7 +47,6 @@ export function Header() {
             talllorenc
           </Link>
         </div>
-
         <nav className="hidden md:flex items-center gap-4">
           <ul className="flex items-center gap-8">
             {headerLinks.map((link) => (
@@ -65,7 +66,13 @@ export function Header() {
             <p className="font-bold">$0.00</p>
           </Link>
 
+          <ThemeSwitcher />
+
           <AuthButton closeMobileMenu={closeMobileMenu} />
+        </div>
+
+        <div className="md:hidden">
+          <ThemeSwitcher />
         </div>
 
         <MobileHeader

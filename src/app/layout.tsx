@@ -3,6 +3,8 @@ import "./globals.css";
 import { Header } from "@/components/Header/Header";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "../../auth";
+import { ThemeProvider } from "next-themes";
+import { NextUIProvider } from "@nextui-org/react";
 
 const inter = Fira_Mono({
   subsets: ["cyrillic", "latin"],
@@ -10,7 +12,7 @@ const inter = Fira_Mono({
 });
 
 export default async function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
@@ -18,10 +20,14 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider session={session}>
-          <Header />
-          {children}
-        </SessionProvider>
+        <NextUIProvider>
+          <ThemeProvider enableSystem={true} attribute="class">
+            <SessionProvider session={session}>
+              <Header />
+              {children}
+            </SessionProvider>
+          </ThemeProvider>
+        </NextUIProvider>
       </body>
     </html>
   );

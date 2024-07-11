@@ -44,8 +44,8 @@ export function MobileHeader({
           onClick={closeMobileMenu}
         >
           <motion.div
-            className="bg-white w-[200px] fixed top-[68px] left-0 h-screen"
-            initial={{ x: "-100%", opacity: 0 }}
+            className="w-[200px] fixed top-[68px] left-0 h-screen z-20 bg-white dark:bg-gray-800"
+            initial={{ x: "-100%", opacity: 0}}
             animate={{
               x: isMobileMenuOpen ? 0 : "100%",
               opacity: isMobileMenuOpen ? 1 : 0,
