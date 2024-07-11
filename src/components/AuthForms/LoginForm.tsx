@@ -44,11 +44,11 @@ export function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-1 border-2 border-nautal-500 rounded-xl p-8"
+      className="flex flex-col gap-1 border-2 border-nautal-500 rounded-xl p-8 max-w-xl mx-auto"
     >
       <div className="flex flex-col gap-2">
         <h2 className="text-xl font-bold">TALLLORENC | Sign in</h2>
-        <p className="text-neutral-500">
+        <p className="text-neutral-500 dark:text-neutral-400">
           Please provide all the necessary information
         </p>
       </div>
@@ -89,7 +89,7 @@ export function LoginForm() {
         <FaArrowRight />
       </button>
 
-      <p className="text-neutral-500 text-center mt-4">
+      <p className="text-neutral-500 dark:text-neutral-400 text-center mt-4">
         Still no account?{" "}
         <Link className="underline hover:text-[#F19CBB]" href="/register">
           Register

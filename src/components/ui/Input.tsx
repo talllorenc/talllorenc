@@ -32,7 +32,7 @@ export function Input({
         onBlur={onBlur}
         value={value}
         onChange={onChange}
-        className={`block border rounded-md px-6 pt-6 pb-1 w-full text-md apperance-none focus:outline-none focus:ring-0 focus:border-[#F19CBB] peer ${
+        className={`block border rounded-md px-6 pt-6 pb-1 w-full text-md apperance-none focus:outline-none focus:ring-0 focus:border-[#F19CBB] peer bg-transparent ${
           error && touched
             ? "border border-[#FF3333]"
             : "border border-[#d0d7deb3]"
@@ -41,7 +41,7 @@ export function Input({
 
       <label
         htmlFor={id}
-        className="absolute flex items-center gap-1 text-md text-neutral-500 duration-150 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-6 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3"
+        className="absolute flex items-center gap-1 text-md text-neutral-500 dark:text-neutral-400 duration-150 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-6 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3"
       >
         <p className="text-[#FF3333] text-md">*</p>
         {label}

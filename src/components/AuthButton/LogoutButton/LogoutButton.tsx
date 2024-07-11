@@ -1,16 +1,14 @@
 import { signOut } from "next-auth/react";
 import { FaSignOutAlt } from "react-icons/fa";
 
-
 export function LogoutButton() {
-
   return (
     <button
       onClick={() => signOut()}
-      className="flex items-center gap-2 transition-all duration-200 border px-2 py-1 rounded-md hover:bg-red-700"
+      className="flex items-center gap-2 transition-all text-white bg-[#f31260] duration-200 border-2 border-[#f31260] px-2 py-1 rounded-md hover:shadow-buttonRedBrick"
     >
-      <p className="font-bold">Log out</p>
-      <FaSignOutAlt/>
+      <FaSignOutAlt />
+      <p className="">Log out</p>
     </button>
   );
 }

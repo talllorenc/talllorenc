@@ -13,7 +13,7 @@ export function GoogleButton() {
         height={25}
         alt="google"
       />
-      <p className="font-bold">Sign in with Google</p>
+      <p className="font-bold text-black">Sign in with Google</p>
     </div>
   );
 }

@@ -22,6 +22,8 @@ const config: Config = {
         buttonPinkBrick: "0px 0px 7px 4px rgba(241,156,187, 1)",
         buttonBlack: "2px 2px 7px 1px rgba(145,149,153, 1)",
         buttonBlackBrick: "0px 0px 7px 4px rgba(145,149,153, 1)",
+        buttonRed: "2px 2px 7px 1px rgba(243,18,96, 1)",
+        buttonRedBrick: "0px 0px 7px 4px rgba(243,18,96, 1)",
       },
       keyframes: {
         "slide-tl": {

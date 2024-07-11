@@ -60,11 +60,11 @@ export function RegisterForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-1 border-2 border-nautal-500 rounded-xl p-8"
+      className="flex flex-col gap-1 border-2 border-nautal-500 rounded-xl p-8 max-w-xl mx-auto"
     >
       <div className="flex flex-col gap-2">
         <h2 className="text-xl font-bold">TALLLORENC | Sign up</h2>
-        <p className="text-neutral-500">
+        <p className="text-neutral-500 dark:text-neutral-400">
           Please provide all the necessary information
         </p>
       </div>
@@ -99,7 +99,7 @@ export function RegisterForm() {
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2 text-neutral-500 mt-1">
           <FaInfoCircle className="text-green-500" />
-          <p className="text-sm">6 characters, 1 uppercase letter, !@#$%^&*</p>
+          <p className="text-sm dark:text-neutral-400">6 characters, 1 uppercase letter, !@#$%^&*</p>
         </div>
         <Input
           id="password"
@@ -134,7 +134,7 @@ export function RegisterForm() {
         <FaArrowRight />
       </button>
 
-      <p className="text-neutral-500 text-center mt-4">
+      <p className="text-neutral-500 dark:text-neutral-400 text-center mt-4">
         Already have an account?{" "}
         <Link className="underline hover:text-[#F19CBB]" href="/login">
           Login

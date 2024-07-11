@@ -1,4 +1,5 @@
 import { RegisterForm } from "@/components/AuthForms/RegisterForm";
+import Layout from "@/components/Layout/Layout";
 import { getSession } from "@/lib/getSession";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -20,15 +21,11 @@ const RegisterPage = async () => {
   const session = await getSession();
   const user = session?.user;
   if (user) redirect("/");
-  
+
   return (
-    <main className="flex-1 flex flex-col">
-      <section className="flex-1">
-        <div className="max-w-xl mx-auto px-[18px] py-12 sm:py-16 lg:py-20">
-          <RegisterForm />
-        </div>
-      </section>
-    </main>
+    <Layout>
+      <RegisterForm />
+    </Layout>
   );
 };
 
