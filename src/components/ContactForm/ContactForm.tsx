@@ -51,10 +51,10 @@ export function ContactForm() {
       try {
         emailjs
           .sendForm(
-            "service_677owqj",
-            "template_q1gdp1x",
+            process.env.EMAIL_JS_SERVICE_ID!,
+            process.env.EMAIL_JS_TEMPLATE_ID!,
             formRef.current!,
-            "aKZuUw2Oseva1iRsh"
+            process.env.EMAIL_JS_ID!
           )
           .then(
             (result) => {
