@@ -91,9 +91,9 @@ export function ContactForm() {
         label="Your name"
         type="text"
         placeholder=" "
-        error={errors.email}
-        touched={touched.email}
-        value={values.email}
+        error={errors.name}
+        touched={touched.name}
+        value={values.name}
         onChange={handleChange}
         onBlur={handleBlur}
       />
