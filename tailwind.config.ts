@@ -12,6 +12,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
+        xs: "320px",
         sm: "640px",
         md: "768px",
         lg: "1024px",
@@ -20,10 +21,14 @@ const config: Config = {
       boxShadow: {
         buttonPink: "2px 2px 7px 1px rgba(241,156,187, 1)",
         buttonPinkBrick: "0px 0px 7px 4px rgba(241,156,187, 1)",
-        buttonBlack: "2px 2px 7px 1px rgba(145,149,153, 1)",
-        buttonBlackBrick: "0px 0px 7px 4px rgba(145,149,153, 1)",
+        buttonWhite: "2px 2px 7px 1px rgba(145,149,153, 1)",
+        buttonWhiteBrick: "0px 0px 7px 4px rgba(145,149,153, 1)",
+        buttonGray: "2px 2px 7px 1px rgba(58,58,58, 1)",
+        buttonGrayBrick: "0px 0px 7px 4px rgba(58,58,58, 1)",
         buttonRed: "2px 2px 7px 1px rgba(243,18,96, 1)",
         buttonRedBrick: "0px 0px 7px 4px rgba(243,18,96, 1)",
+        buttonBlue: "2px 2px 7px 1px rgba(65,182,222, 1)",
+        buttonBlueBrick: "0px 0px 7px 4px rgba(65,182,222, 1)",
       },
       keyframes: {
         "slide-tl": {

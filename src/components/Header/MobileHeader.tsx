@@ -1,7 +1,7 @@
 import React from "react";
 import { IMenuLink } from "@/types/Menus";
 import Link from "next/link";
-import { FaCartPlus, FaRegUser } from "react-icons/fa";
+import { FaCartPlus, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthButton } from "../AuthButton/AuthButton";
 
@@ -44,8 +44,8 @@ export function MobileHeader({
           onClick={closeMobileMenu}
         >
           <motion.div
-            className="w-[200px] fixed top-[68px] left-0 h-screen z-20 bg-white dark:bg-gray-800"
-            initial={{ x: "-100%", opacity: 0}}
+            className="w-full fixed top-0 left-0 h-screen z-20 bg-white dark:bg-[#232323]"
+            initial={{ x: "-100%", opacity: 0 }}
             animate={{
               x: isMobileMenuOpen ? 0 : "100%",
               opacity: isMobileMenuOpen ? 1 : 0,
@@ -54,12 +54,20 @@ export function MobileHeader({
             exit={{ x: "-100%", opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col p-8 text-black dark:text-white">
+              <div className="flex items-center justify-between w-full border-b-2">
+                <p className="font-bold text-2xl">TALLLORENC</p>
+                <FaTimes
+                  onClick={closeMobileMenu}
+                  className="text-2xl cursor-pointer hover:text-zinc-700 transition-all duration-200"
+                />
+              </div>
+
               {headerLinks.map((link) => (
                 <Link
                   key={link.id}
                   href={link.path}
-                  className="text-md border-b p-4 font-bold"
+                  className="text-2xl py-4 font-bold"
                   onClick={closeMobileMenu}
                 >
                   {link.title}

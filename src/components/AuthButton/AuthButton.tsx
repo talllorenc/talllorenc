@@ -27,7 +27,7 @@ export function AuthButton({ closeMobileMenu }: IAuthButtonProps) {
       {session?.user ? (
         <button
           onClick={toggleMenu}
-          className="transition-all duration-200 border-4 border-[#F19CBB] rounded-full"
+          className="transition-all duration-200 border-4 border-[#41b6de] rounded-full hover:scale-110"
         >
           {session?.user?.image ? (
             <Image
@@ -51,7 +51,7 @@ export function AuthButton({ closeMobileMenu }: IAuthButtonProps) {
         <Link
           onClick={closeMobileMenu}
           href="/login"
-          className="transition-all duration-200 border-2 border-gray-500 rounded-xl md:border-0 md:bg-[#F19CBB] md:text-white font-bold md:hover:shadow-buttonPinkBrick md:shadow-buttonBlack flex items-center gap-2 md:rounded px-4 py-1"
+          className="transition-all duration-200 border-2 border-gray-500 rounded-xl md:border-0 md:bg-[#41b6de] md:text-white font-bold md:hover:shadow-buttonBlueBrick md:shadow-buttonBlue flex items-center gap-2 md:rounded px-4 py-1 md:py-2"
         >
           <FaRegUser className="text-2xl md:text-xl" />
           <p className="hidden md:block font-bold">Log in </p>

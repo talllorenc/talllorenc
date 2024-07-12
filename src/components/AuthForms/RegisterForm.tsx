@@ -60,9 +60,9 @@ export function RegisterForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-1 border-2 border-nautal-500 rounded-xl p-8 max-w-xl mx-auto"
+      className="flex flex-col gap-1 max-w-xl mx-auto"
     >
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 text-center md:text-left">
         <h2 className="text-xl font-bold">TALLLORENC | Sign up</h2>
         <p className="text-neutral-500 dark:text-neutral-400">
           Please provide all the necessary information
@@ -128,7 +128,7 @@ export function RegisterForm() {
 
       <button
         type="submit"
-        className="flex items-center justify-center bg-[#F19CBB] text-white font-bold hover:shadow-buttonPinkBrick shadow-buttonBlack transition-all duration-200 gap-2 rounded-md py-2 mt-2"
+        className="flex items-center justify-center bg-[#f31260] text-white font-bold hover:shadow-buttonRedBrick shadow-buttonRed transition-all duration-200 gap-2 rounded-md py-2 mt-2"
       >
         JOIN
         <FaArrowRight />
@@ -136,7 +136,7 @@ export function RegisterForm() {
 
       <p className="text-neutral-500 dark:text-neutral-400 text-center mt-4">
         Already have an account?{" "}
-        <Link className="underline hover:text-[#F19CBB]" href="/login">
+        <Link className="underline hover:text-[#f31260]" href="/login">
           Login
         </Link>
       </p>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import { IMenuLink } from "@/types/Menus";
 import { useSession } from "next-auth/react";
-import { FaRegUser, FaTimes } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
 
 interface IMobileHeaderProps {
   isMenuOpen: boolean;
@@ -24,7 +24,7 @@ export function ProfileMenu({ isMenuOpen, closeMenu }: IMobileHeaderProps) {
     <AnimatePresence>
       {isMenuOpen && (
         <motion.div
-          className="right-4 fixed top-[68px] backdrop-blur bg-black text-white dark:bg-white p-4 dark:text-black rounded-xl"
+          className="right-4 fixed md:top-[68px] backdrop-blur bg-[#232323] text-white p-4 rounded-xl shadow-buttonGrayBrick"
           initial={{ opacity: 0 }}
           animate={{
             opacity: isMenuOpen ? 1 : 0,
@@ -34,18 +34,13 @@ export function ProfileMenu({ isMenuOpen, closeMenu }: IMobileHeaderProps) {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex flex-col items-center gap-4">
-            <div className="flex items-center justify-between w-full">
-              <p className="font-bold">Profile</p>
-              <FaTimes onClick={closeMenu} className="text-xl cursor-pointer hover:text-zinc-700 transition-all duration-200"/>
-            </div>
-
             <nav className="flex items-center gap-4">
               <ul className="flex items-center gap-8">
                 {profileMenuLinks.map((link) => (
                   <li key={link.id}>
                     <Link
                       href={link.path}
-                      className="px-4 py-1 border-b transition-all duration-200 hover:border-zinc-700"
+                      className="px-4 py-1 transition-all rounded-lg duration-200 hover:bg-zinc-700"
                     >
                       {link.title}
                     </Link>

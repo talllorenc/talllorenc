@@ -7,6 +7,7 @@ import { IMenuLink } from "@/types/Menus";
 import { MobileHeader } from "./MobileHeader";
 import { AuthButton } from "../AuthButton/AuthButton";
 import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
+import { usePathname } from 'next/navigation'
 
 const headerLinks: IMenuLink[] = [
   {
@@ -22,6 +23,7 @@ const headerLinks: IMenuLink[] = [
 ];
 
 export function Header() {
+  const router = usePathname();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -32,8 +34,10 @@ export function Header() {
     setMobileMenuOpen(false);
   };
 
+  const isHomePage = router === "/";
+
   return (
-    <header className="w-full fixed top-0 left-0 backdrop-blur z-50">
+    <header className={`w-full fixed top-0 left-0 backdrop-blur z-50 ${isHomePage ? "text-white" : "dark:text-white"}`}>
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <button
@@ -43,8 +47,8 @@ export function Header() {
             {!isMobileMenuOpen ? <FaBars /> : <FaTimes />}
           </button>
 
-          <Link href="/" className="text-3xl font-bold">
-            talllorenc
+          <Link href="/" className="text-3xl font-bold hover:scale-90 transition-all duration-200">
+            TALLLORENC
           </Link>
         </div>
         <nav className="hidden md:flex items-center gap-4">
@@ -52,7 +56,7 @@ export function Header() {
             {headerLinks.map((link) => (
               <li
                 key={link.id}
-                className="hover:text-[#F19CBB] transition-all duration-200 text-xl font-medium"
+                className="hover:text-[#f31260] transition-all duration-200 text-xl"
               >
                 <Link href={link.path}>{link.title}</Link>
               </li>
