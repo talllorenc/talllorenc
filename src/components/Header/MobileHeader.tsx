@@ -54,9 +54,9 @@ export function MobileHeader({
             exit={{ x: "-100%", opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-col p-8 text-black dark:text-white">
-              <div className="flex items-center justify-between w-full border-b-2">
-                <p className="font-bold text-2xl">TALLLORENC</p>
+            <div className="flex flex-col text-black dark:text-white">
+              <div className="flex items-center justify-between w-full p-4 mb-4">
+                <p className="text-3xl font-bold">TALLLORENC</p>
                 <FaTimes
                   onClick={closeMobileMenu}
                   className="text-2xl cursor-pointer hover:text-zinc-700 transition-all duration-200"
@@ -67,7 +67,7 @@ export function MobileHeader({
                 <Link
                   key={link.id}
                   href={link.path}
-                  className="text-2xl py-4 font-bold"
+                  className="text-2xl p-4 font-bold border-b"
                   onClick={closeMobileMenu}
                 >
                   {link.title}

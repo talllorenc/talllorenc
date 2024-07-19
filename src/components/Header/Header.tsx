@@ -7,7 +7,8 @@ import { IMenuLink } from "@/types/Menus";
 import { MobileHeader } from "./MobileHeader";
 import { AuthButton } from "../AuthButton/AuthButton";
 import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
+import { Logo } from "../ui/Logo";
 
 const headerLinks: IMenuLink[] = [
   {
@@ -37,7 +38,11 @@ export function Header() {
   const isHomePage = router === "/";
 
   return (
-    <header className={`w-full fixed top-0 left-0 backdrop-blur z-50 ${isHomePage ? "text-white" : "dark:text-white"}`}>
+    <header
+      className={`w-full fixed top-0 left-0 bg-white/10 dark:bg-[#232323]/10  backdrop-blur z-50 ${
+        isHomePage ? "text-white" : "dark:text-white"
+      }`}
+    >
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <button
@@ -47,7 +52,10 @@ export function Header() {
             {!isMobileMenuOpen ? <FaBars /> : <FaTimes />}
           </button>
 
-          <Link href="/" className="text-3xl font-bold hover:scale-90 transition-all duration-200">
+          <Link
+            href="/"
+            className="text-3xl font-bold hover:scale-90 transition-all duration-200"
+          >
             TALLLORENC
           </Link>
         </div>

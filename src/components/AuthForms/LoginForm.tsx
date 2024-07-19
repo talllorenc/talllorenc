@@ -9,6 +9,7 @@ import Link from "next/link";
 import { AuthSocials } from "../AuthSocials/AuthSocials";
 import { Input } from "../ui/Input";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 const basicSchema = yup.object().shape({
   email: yup.string().required("*required").email("*invalid format"),
@@ -35,9 +36,19 @@ export function LoginForm() {
     validationSchema: basicSchema,
     onSubmit: async (values: ILoginUser) => {
       try {
-       
+        const result = await signIn("credentials", {
+          email: values.email,
+          password: values.password,
+        });
+
+        if (result?.error) {
+          setErrorMessage(result.error);
+        } else {
+          router.push("/"); 
+        }
       } catch (error) {
-        console.log(error);  
+        console.log(error);
+        setErrorMessage("An unexpected error occurred");
       }
     },
   });
