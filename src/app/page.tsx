@@ -18,10 +18,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="">
-      <BanerMain />
-      <Layout>
-        test
-      </Layout>
+      
     </div>
   );
 }

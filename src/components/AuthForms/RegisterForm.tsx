@@ -8,6 +8,8 @@ import { FaArrowRight, FaInfoCircle } from "react-icons/fa";
 import Link from "next/link";
 import { AuthSocials } from "../AuthSocials/AuthSocials";
 import { Input } from "../ui/Input";
+import { HomeButton } from "../ui/HomeButton";
+import { Logo } from "../ui/Logo";
 
 const loginRules = /^[A-Za-z0-9]+$/;
 const passwordRules = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/;
@@ -60,7 +62,7 @@ export function RegisterForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-1 max-w-xl mx-auto"
+      className="flex flex-col gap-1 w-full mx-auto"
     >
       <div className="flex flex-col gap-2 text-center md:text-left">
         <h2 className="text-xl font-bold">TALLLORENC | Sign up</h2>
@@ -68,7 +70,7 @@ export function RegisterForm() {
           Please provide all the necessary information
         </p>
       </div>
-
+      
       <AuthSocials />
 
       <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
@@ -99,7 +101,9 @@ export function RegisterForm() {
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2 text-neutral-500 mt-1">
           <FaInfoCircle className="text-green-500" />
-          <p className="text-sm dark:text-neutral-400">6 characters, 1 uppercase letter, !@#$%^&*</p>
+          <p className="text-sm dark:text-neutral-400">
+            6 characters, 1 uppercase letter, !@#$%^&*
+          </p>
         </div>
         <Input
           id="password"
@@ -115,16 +119,16 @@ export function RegisterForm() {
       </div>
 
       <Input
-          id="confirmPassword"
-          label="Confirm password"
-          type="confirmPassword"
-          placeholder=" "
-          error={errors.confirmPassword}
-          touched={touched.confirmPassword}
-          value={values.confirmPassword}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+        id="confirmPassword"
+        label="Confirm password"
+        type="confirmPassword"
+        placeholder=" "
+        error={errors.confirmPassword}
+        touched={touched.confirmPassword}
+        value={values.confirmPassword}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
 
       <button
         type="submit"
@@ -134,12 +138,16 @@ export function RegisterForm() {
         <FaArrowRight />
       </button>
 
-      <p className="text-neutral-500 dark:text-neutral-400 text-center mt-4">
-        Already have an account?{" "}
-        <Link className="underline hover:text-[#f31260]" href="/login">
-          Login
-        </Link>
-      </p>
+      <div className="flex flex-col items-center gap-4">
+        <p className="text-neutral-500 dark:text-neutral-400 text-center mt-4">
+          Already have an account?
+          <Link className="underline hover:text-[#f31260]" href="/login">
+            Login
+          </Link>
+        </p>
+
+        <HomeButton />
+      </div>
     </form>
   );
 }

@@ -27,6 +27,10 @@ export function Header() {
   const router = usePathname();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  if (router == "/login" || router == "/register") {
+    return <></>;
+  }
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -39,9 +43,7 @@ export function Header() {
 
   return (
     <header
-      className={`w-full fixed top-0 left-0 bg-white/10 dark:bg-[#232323]/10  backdrop-blur z-50 ${
-        isHomePage ? "text-white" : "dark:text-white"
-      }`}
+      className={`w-full fixed top-0 left-0 bg-white/10 dark:bg-[#232323]/10  backdrop-blur z-50 `}
     >
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-2">

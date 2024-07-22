@@ -23,9 +23,9 @@ const LoginPage = async () => {
   if (user) redirect("/");
 
   return (
-    <Layout>
+    <div className="flex items-center justify-center flex-1 p-4">
       <LoginForm />
-    </Layout>
+    </div>
   );
 };
 
