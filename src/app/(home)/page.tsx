@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout/Layout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="">
-      
-    </div>
+    <Layout>
+      HOME PAGE
+    </Layout>
   );
 }

@@ -7,7 +7,6 @@ import { IMenuLink } from "@/types/Menus";
 import { MobileHeader } from "./MobileHeader";
 import { AuthButton } from "../AuthButton/AuthButton";
 import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
-import { usePathname } from "next/navigation";
 
 const headerLinks: IMenuLink[] = [
   {
@@ -23,12 +22,7 @@ const headerLinks: IMenuLink[] = [
 ];
 
 export function Header() {
-  const router = usePathname();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  if (router == "/login" || router == "/register") {
-    return <></>;
-  }
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);

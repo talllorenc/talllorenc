@@ -2,7 +2,7 @@ import { LoginForm } from "@/components/AuthForms/LoginForm";
 import { Metadata } from "next";
 import { getSession } from "../../../lib/getSession";
 import { redirect } from "next/navigation";
-import Layout from "@/components/Layout/Layout";
+import AuthLayout from "@/components/Layout/AuthLayout";
 
 export const metadata: Metadata = {
   title: "Sign in | talllorenc",
@@ -23,9 +23,9 @@ const LoginPage = async () => {
   if (user) redirect("/");
 
   return (
-    <div className="flex items-center justify-center flex-1 p-4">
+    <AuthLayout>
       <LoginForm />
-    </div>
+    </AuthLayout>
   );
 };
 

@@ -1,5 +1,5 @@
 import { RegisterForm } from "@/components/AuthForms/RegisterForm";
-import Layout from "@/components/Layout/Layout";
+import AuthLayout from "@/components/Layout/AuthLayout";
 import { getSession } from "@/lib/getSession";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -23,9 +23,9 @@ const RegisterPage = async () => {
   if (user) redirect("/");
 
   return (
-    <div className="flex items-center justify-center flex-1 p-4">
+    <AuthLayout>
       <RegisterForm />
-    </div>
+    </AuthLayout>
   );
 };
 
