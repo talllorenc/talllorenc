@@ -34,7 +34,7 @@ export function Header() {
 
   return (
     <header
-      className={`w-full fixed top-0 left-0 bg-white/10 dark:bg-[#232323]/10  backdrop-blur z-50 `}
+      className={`w-full fixed top-0 left-0 bg-white dark:bg-[#232323] z-50 `}
     >
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
