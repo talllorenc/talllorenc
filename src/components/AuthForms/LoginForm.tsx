@@ -11,6 +11,9 @@ import { Input } from "../ui/Input";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { HomeButton } from "../ui/HomeButton";
+import { authenticate } from "@/lib/actions";
+import { FormErrors } from "./FormErrors";
+import { Spinner } from "@nextui-org/react";
 
 const basicSchema = yup.object().shape({
   email: yup.string().required("*required").email("*invalid format"),
@@ -20,6 +23,7 @@ const basicSchema = yup.object().shape({
 export function LoginForm() {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     values,
@@ -36,29 +40,33 @@ export function LoginForm() {
     },
     validationSchema: basicSchema,
     onSubmit: async (values: ILoginUser) => {
+      setLoading(true);
       try {
-        const result = await signIn("credentials", {
-          email: values.email,
-          password: values.password,
-          redirect: false,
-        });
+        const error = await authenticate(values);
 
-        if (result?.error) {
-          setErrorMessage(result.error);
+        if (error) {
+          setErrorMessage(error);
         } else {
           router.push("/");
         }
       } catch (error) {
-        console.log(error);
         setErrorMessage("An unexpected error occurred");
+      } finally {
+        setLoading(false);
       }
     },
   });
+
   return (
     <form
       onSubmit={handleSubmit}
       className="flex flex-col gap-1 w-full mx-auto"
     >
+      {loading && (
+        <div className="absolute inset-0 bg-gray-500 bg-opacity-70 flex justify-center items-center z-10">
+          <Spinner size="lg" color="danger" />
+        </div>
+      )}
       <div className="flex flex-col gap-2 text-center md:text-left">
         <h2 className="text-xl font-bold">TALLLORENC | Sign in</h2>
         <p className="text-neutral-500 dark:text-neutral-400">
@@ -92,7 +100,7 @@ export function LoginForm() {
         onBlur={handleBlur}
       />
 
-      {errorMessage && <div className="text-red-500 mb-2">{errorMessage}</div>}
+      {errorMessage && <FormErrors message={errorMessage || ""} />}
 
       <button
         type="submit"
@@ -101,6 +109,7 @@ export function LoginForm() {
         ENTER
         <FaArrowRight />
       </button>
+
       <div className="flex flex-col items-center gap-4">
         <p className="text-neutral-500 dark:text-neutral-400 text-center mt-4">
           Still no account?

@@ -8,7 +8,6 @@ import { MobileHeader } from "./MobileHeader";
 import { AuthButton } from "../AuthButton/AuthButton";
 import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
 import { usePathname } from "next/navigation";
-import { Logo } from "../ui/Logo";
 
 const headerLinks: IMenuLink[] = [
   {
@@ -38,8 +37,6 @@ export function Header() {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
-
-  const isHomePage = router === "/";
 
   return (
     <header

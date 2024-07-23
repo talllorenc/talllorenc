@@ -9,7 +9,9 @@ import Link from "next/link";
 import { AuthSocials } from "../AuthSocials/AuthSocials";
 import { Input } from "../ui/Input";
 import { HomeButton } from "../ui/HomeButton";
-import { Logo } from "../ui/Logo";
+import { useState } from "react";
+import { Spinner } from "@nextui-org/react";
+import { FormErrors } from "./FormErrors";
 
 const loginRules = /^[A-Za-z0-9]+$/;
 const passwordRules = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/;
@@ -36,6 +38,8 @@ const basicSchema = yup.object().shape({
 
 export function RegisterForm() {
   const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     values,
@@ -55,8 +59,17 @@ export function RegisterForm() {
     validationSchema: basicSchema,
     onSubmit: async (values: IRegisterUser, { resetForm }) => {
       try {
-        console.log(values);
-      } catch (error: any) {}
+        // const error = await authenticate(values);
+        // if (error) {
+        //   setErrorMessage(error);
+        // } else {
+        //   router.push("/");
+        // }
+      } catch (error) {
+        setErrorMessage("An unexpected error occurred");
+      } finally {
+        setLoading(false);
+      }
     },
   });
   return (
@@ -64,13 +77,19 @@ export function RegisterForm() {
       onSubmit={handleSubmit}
       className="flex flex-col gap-1 w-full mx-auto"
     >
+      {loading && (
+        <div className="absolute inset-0 bg-gray-500 bg-opacity-70 flex justify-center items-center z-10">
+          <Spinner size="lg" color="danger" />
+        </div>
+      )}
+
       <div className="flex flex-col gap-2 text-center md:text-left">
         <h2 className="text-xl font-bold">TALLLORENC | Sign up</h2>
         <p className="text-neutral-500 dark:text-neutral-400">
           Please provide all the necessary information
         </p>
       </div>
-      
+
       <AuthSocials />
 
       <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
@@ -121,7 +140,7 @@ export function RegisterForm() {
       <Input
         id="confirmPassword"
         label="Confirm password"
-        type="confirmPassword"
+        type="Password"
         placeholder=" "
         error={errors.confirmPassword}
         touched={touched.confirmPassword}
@@ -129,6 +148,8 @@ export function RegisterForm() {
         onChange={handleChange}
         onBlur={handleBlur}
       />
+
+      {errorMessage && <FormErrors message={errorMessage || ""} />}
 
       <button
         type="submit"

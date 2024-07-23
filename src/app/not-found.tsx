@@ -1,3 +1,4 @@
+import { HomeButton } from "@/components/ui/HomeButton";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -8,14 +9,8 @@ export default function NotFound() {
         <p className="font-medium text-xl">Whoops, that page is gone</p>
       </div>
 
-      <Link
-        href="/"
-        className="shadow-buttonBlack transition-all duration-200 px-6 py-2 font-bold rounded-md hover:shadow-buttonBlackBrick"
-      >
-        HOME PAGE
-      </Link>
+      <HomeButton />
+      
     </div>
   );
 }
-
-

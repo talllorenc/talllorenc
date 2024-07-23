@@ -22,7 +22,7 @@ export function Input({
   onBlur,
 }: IInputProps) {
   return (
-    <div className="relative pb-5">
+    <div className="relative pb-5 w-full">
       <input
         id={id}
         name={id}

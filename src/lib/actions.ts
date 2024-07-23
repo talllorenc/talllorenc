@@ -1,21 +1,22 @@
-'use server';
- 
-import { signIn } from '../../auth';
-import { AuthError } from 'next-auth';
- 
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
+"use server";
+
+import { signIn } from "../../auth";
+import { AuthError } from "next-auth";
+import { ILoginUser } from "@/types/AuthForms";
+
+export async function authenticate(formData: ILoginUser) {
   try {
-    await signIn('credentials', formData);
+    await signIn("credentials", {
+      ...formData,
+      redirectTo: '/',
+    });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
-        case 'CredentialsSignin':
-          return 'Invalid credentials.';
+        case "CredentialsSignin":
+          return "Invalid credentials";
         default:
-          return 'Something went wrong.';
+          return "Invalid credentials";
       }
     }
     throw error;
