@@ -38,13 +38,6 @@ export function Header() {
     >
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <button
-            className="md:hidden flex items-center text-3xl"
-            onClick={toggleMobileMenu}
-          >
-            {!isMobileMenuOpen ? <FaBars /> : <FaTimes />}
-          </button>
-
           <Link
             href="/"
             className="text-3xl font-bold hover:scale-90 transition-all duration-200"
@@ -52,6 +45,7 @@ export function Header() {
             TALLLORENC
           </Link>
         </div>
+
         <nav className="hidden md:flex items-center gap-4">
           <ul className="flex items-center gap-8">
             {headerLinks.map((link) => (
@@ -66,19 +60,16 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/cart" className="flex items-center gap-2">
-            <FaCartPlus className="text-xl" />
-            <p className="font-bold">$0.00</p>
-          </Link>
-
           <ThemeSwitcher />
-
           <AuthButton closeMobileMenu={closeMobileMenu} />
         </div>
 
-        <div className="md:hidden">
-          <ThemeSwitcher />
-        </div>
+        <button
+          className="md:hidden flex items-center text-3xl"
+          onClick={toggleMobileMenu}
+        >
+          {!isMobileMenuOpen ? <FaBars /> : <FaTimes />}
+        </button>
 
         <MobileHeader
           isMobileMenuOpen={isMobileMenuOpen}

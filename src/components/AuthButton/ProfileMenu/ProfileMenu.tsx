@@ -3,7 +3,8 @@ import Link from "next/link";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import { IMenuLink } from "@/types/Menus";
 import { useSession } from "next-auth/react";
-import { FaRegUser } from "react-icons/fa";
+import { FaAngleDoubleRight } from "react-icons/fa";
+import Image from "next/image";
 
 interface IMobileHeaderProps {
   isMenuOpen: boolean;
@@ -16,6 +17,11 @@ const profileMenuLinks: IMenuLink[] = [
     title: "Dashboard",
     path: "/dashboard",
   },
+  {
+    id: 2,
+    title: "Settings",
+    path: "/settings",
+  },
 ];
 
 export function ProfileMenu({ isMenuOpen, closeMenu }: IMobileHeaderProps) {
@@ -24,7 +30,7 @@ export function ProfileMenu({ isMenuOpen, closeMenu }: IMobileHeaderProps) {
     <AnimatePresence>
       {isMenuOpen && (
         <motion.div
-          className="right-4 fixed md:top-[68px] backdrop-blur bg-[#232323] text-white p-4 rounded-xl shadow-buttonGrayBrick"
+          className="right-4 fixed md:top-[68px] w-[250px] backdrop-blur bg-[#232323] text-white p-4 rounded-xl shadow-buttonGrayBrick"
           initial={{ opacity: 0 }}
           animate={{
             opacity: isMenuOpen ? 1 : 0,
@@ -33,16 +39,18 @@ export function ProfileMenu({ isMenuOpen, closeMenu }: IMobileHeaderProps) {
           exit={{ opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex flex-col items-center gap-4">
-            <nav className="flex items-center gap-4">
-              <ul className="flex items-center gap-8">
+          <div className="flex flex-col gap-4">
+
+            <nav className="py-4 border-b border-gray-500">
+              <ul className="flex flex-col gap-4">
                 {profileMenuLinks.map((link) => (
                   <li key={link.id}>
                     <Link
                       href={link.path}
-                      className="px-4 py-1 transition-all rounded-lg duration-200 hover:bg-zinc-700"
+                      className="flex justify-between items-center text-lg hover:bg-[#2b2b2b] p-2 rounded"
                     >
-                      {link.title}
+                      <p>{link.title}</p>
+                      <FaAngleDoubleRight />
                     </Link>
                   </li>
                 ))}

@@ -1,9 +1,10 @@
 import React from "react";
 import { IMenuLink } from "@/types/Menus";
 import Link from "next/link";
-import { FaCartPlus, FaTimes } from "react-icons/fa";
+import { FaAngleDoubleRight, FaCartPlus, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import { AuthButton } from "../AuthButton/AuthButton";
+import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
+import { MobileAuthButton } from "../AuthButton/MobileAuthButton";
 
 interface IMobileHeaderProps {
   isMobileMenuOpen: boolean;
@@ -36,7 +37,7 @@ export function MobileHeader({
     <AnimatePresence>
       {isMobileMenuOpen && (
         <motion.div
-          className="md:hidden fixed top-0 left-0 w-full h-screen flex z-20"
+          className="md:hidden fixed top-[68px] left-0 w-full h-screen flex z-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -44,47 +45,40 @@ export function MobileHeader({
           onClick={closeMobileMenu}
         >
           <motion.div
-            className="w-full fixed top-0 left-0 h-screen z-20 bg-white dark:bg-[#232323]"
-            initial={{ x: "-100%", opacity: 0 }}
+            className="w-full fixed top-[68px] left-0 h-screen z-20 bg-white dark:bg-[#232323]"
+            initial={{ x: "100%", opacity: 0 }}
             animate={{
-              x: isMobileMenuOpen ? 0 : "100%",
+              x: isMobileMenuOpen ? 0 : "-100%",
               opacity: isMobileMenuOpen ? 1 : 0,
             }}
             transition={{ duration: 0.2 }}
-            exit={{ x: "-100%", opacity: 0 }}
+            exit={{ x: "100%", opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex flex-col text-black dark:text-white">
-              <div className="flex items-center justify-between w-full p-4 mb-4">
-                <p className="text-3xl font-bold">TALLLORENC</p>
-                <FaTimes
-                  onClick={closeMobileMenu}
-                  className="text-2xl cursor-pointer hover:text-zinc-700 transition-all duration-200"
-                />
+            <div className="flex flex-col text-black dark:text-white p-4 ">
+              <div className="border-b border-gray-500 py-4">
+                <MobileAuthButton/>
               </div>
 
-              {headerLinks.map((link) => (
-                <Link
-                  key={link.id}
-                  href={link.path}
-                  className="text-2xl p-4 font-bold border-b"
-                  onClick={closeMobileMenu}
-                >
-                  {link.title}
-                </Link>
-              ))}
-
-              <div className="flex items-center flex gap-4 text-2xl mt-8 justify-center">
-                <Link
-                  href="/cart"
-                  className="flex items-center border-2 border-gray-500 rounded-xl px-4 py-1"
-                  onClick={closeMobileMenu}
-                >
-                  <FaCartPlus className="" />
-                </Link>
-
-                <AuthButton closeMobileMenu={closeMobileMenu} />
+              <div className="border-b border-gray-500 flex flex-col gap-4 py-4">
+                {headerLinks.map((link) => (
+                  <Link
+                    key={link.id}
+                    href={link.path}
+                    className="flex justify-between items-center text-lg"
+                    onClick={closeMobileMenu}
+                  >
+                    <p>{link.title}</p>
+                    <FaAngleDoubleRight />
+                  </Link>
+                ))}
               </div>
+
+              <div className="flex justify-between items-center text-lg py-4">
+                <p>Theme</p>
+                <ThemeSwitcher />
+              </div>
+
             </div>
           </motion.div>
         </motion.div>

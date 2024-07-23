@@ -51,10 +51,10 @@ export function AuthButton({ closeMobileMenu }: IAuthButtonProps) {
         <Link
           onClick={closeMobileMenu}
           href="/login"
-          className="transition-all duration-200 border-2 border-gray-500 rounded-xl md:border-0 md:bg-[#41b6de] md:text-white font-bold md:hover:shadow-buttonBlueBrick md:shadow-buttonBlue flex items-center gap-2 md:rounded px-4 py-1 md:py-2"
+          className="transition-all duration-200 rounded-md border-0 bg-[#41b6de] text-white font-bold hover:shadow-buttonBlueBrick shadow-buttonBlue flex items-center justify-center gap-2 rounded px-4 py-2"
         >
-          <FaRegUser className="text-2xl md:text-xl" />
-          <p className="hidden md:block font-bold">Log in </p>
+          <FaRegUser className="text-2xl text-xl" />
+          <p className="font-bold">Log in </p>
         </Link>
       )}
 
