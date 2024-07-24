@@ -5,6 +5,7 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import MobileAuthButton from "../AuthButton/MobileAuthButton";
+import { usePathname } from "next/navigation";
 
 interface IMobileHeaderProps {
   isMobileMenuOpen: boolean;
@@ -33,6 +34,7 @@ const MobileHeader = ({
   isMobileMenuOpen,
   closeMobileMenu,
 }: IMobileHeaderProps) => {
+  const router = usePathname();
   return (
     <AnimatePresence>
       {isMobileMenuOpen && (
@@ -45,7 +47,7 @@ const MobileHeader = ({
           onClick={closeMobileMenu}
         >
           <motion.div
-            className="w-full fixed top-[68px] left-0 h-screen z-20 bg-white dark:bg-[#232323]"
+            className="w-full fixed top-[68px] left-0 h-screen z-20 dark:bg-gradient-to-r dark:from-black dark:to-slate-700 bg-gradient-to-r from-slate-300 to-white"
             initial={{ x: "100%", opacity: 0 }}
             animate={{
               x: isMobileMenuOpen ? 0 : "-100%",
@@ -60,19 +62,26 @@ const MobileHeader = ({
                 <MobileAuthButton />
               </div>
 
-              <div className="border-b border-gray-500 flex flex-col gap-4 py-4">
-                {headerLinks.map((link) => (
-                  <Link
-                    key={link.id}
-                    href={link.path}
-                    className="flex justify-between items-center text-lg"
-                    onClick={closeMobileMenu}
-                  >
-                    <p>{link.title}</p>
-                    <FaAngleDoubleRight />
-                  </Link>
-                ))}
-              </div>
+              <nav className="border-b border-gray-500 flex flex-col gap-4 py-4">
+                <ul className="flex flex-col gap-4">
+                  {headerLinks.map((link) => {
+                    const isActive = router === link.path;
+                    return (
+                      <li
+                        key={link.id}
+                        className={`flex justify-between items-center text-lg  ${
+                          isActive ? "text-[#f31260]" : ""
+                        }`}
+                      >
+                        <Link href={link.path} onClick={closeMobileMenu}>
+                          <p>{link.title}</p>
+                        </Link>
+                        <FaAngleDoubleRight />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
 
               <div className="flex justify-between items-center text-lg py-4">
                 <p>Theme</p>
