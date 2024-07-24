@@ -1,4 +1,4 @@
-import { RegisterForm } from "@/components/AuthForms/RegisterForm";
+import RegisterForm from "@/components/AuthForms/RegisterForm";
 import AuthLayout from "@/components/Layout/AuthLayout";
 import { getSession } from "@/lib/getSession";
 import { Metadata } from "next";

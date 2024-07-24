@@ -7,9 +7,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",
   },
-  pages: {
-    signIn: "/login",
-  },
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -43,6 +40,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === 'google') {
+        const res = await fetch('http://localhost:8080/api/auth/google-signin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: user.email,
+            name: user.name,
+            image: user.image,
+          }),
+        });
+
+        if (!res.ok) {
+          console.error("Failed to create user");
+          return false;
+        }
+      }
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -59,5 +77,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return session;
     },
+  },
+  secret: process.env.AUTH_SECRET,
+  pages: {
+    signIn: "/login",
   },
 });

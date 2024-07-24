@@ -1,7 +1,7 @@
 import { signOut } from "next-auth/react";
 import { FaSignOutAlt } from "react-icons/fa";
 
-export function LogoutButton() {
+const LogoutButton = () => {
   return (
     <button
       onClick={() => signOut()}

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 
-export function GoogleButton() {
+const GoogleButton =() => {
   return (
     <div
       onClick={() => signIn("google", { redirectTo: "/" })}
@@ -17,3 +17,5 @@ export function GoogleButton() {
     </div>
   );
 }
+
+export default GoogleButton

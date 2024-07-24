@@ -1,7 +1,7 @@
 import React from "react";
-import { GoogleButton } from "./GoogleButton/GoogleButton";
+import GoogleButton from "./GoogleButton/GoogleButton";
 
-export function AuthSocials() {
+const  AuthSocials = () => {
   return (
     <div className="flex flex-col gap-2 py-4">
       <div>
@@ -16,4 +16,6 @@ export function AuthSocials() {
     </div>
   );
 }
+
+export default AuthSocials
 

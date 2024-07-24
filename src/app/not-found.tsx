@@ -1,4 +1,4 @@
-import { HomeButton } from "@/components/ui/HomeButton";
+import HomeButton from "@/components/ui/HomeButton";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -10,7 +10,6 @@ export default function NotFound() {
       </div>
 
       <HomeButton />
-      
     </div>
   );
 }

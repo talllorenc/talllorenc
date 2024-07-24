@@ -4,7 +4,7 @@ import emailjs from "@emailjs/browser";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useRef, useState } from "react";
-import { Input } from "../ui/Input";
+import Input from "../ui/Input";
 import { FaInfoCircle } from "react-icons/fa";
 import { Spinner } from "@nextui-org/react";
 
@@ -22,7 +22,7 @@ const basicSchema = yup.object().shape({
     .max(100, "*invalid format"),
 });
 
-export function ContactForm() {
+const ContactForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [sending, setSending] = useState(false);
@@ -153,3 +153,6 @@ export function ContactForm() {
     </form>
   );
 }
+
+
+export default ContactForm

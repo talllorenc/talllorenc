@@ -1,3 +1,4 @@
+import BanerHome from "@/components/BanerHome/BanerHome";
 import Layout from "@/components/Layout/Layout";
 import { Metadata } from "next";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <Layout>
-      HOME PAGE
+      <BanerHome/>
     </Layout>
   );
 }

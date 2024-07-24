@@ -15,7 +15,7 @@ const mobileHeaderLinks: IUserMenuLink[] = [
     },
   ];
 
-export function MobileProfileMenu() {
+const MobileProfileMenu = () => {
   return (
     <nav>
       <ul className="flex flex-col gap-4">
@@ -34,3 +34,5 @@ export function MobileProfileMenu() {
     </nav>
   );
 }
+
+export default MobileProfileMenu

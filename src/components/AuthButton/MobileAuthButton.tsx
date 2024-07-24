@@ -3,9 +3,9 @@ import { FaRegUser } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import LogoutButton from "./LogoutButton/LogoutButton";
-import { MobileProfileMenu } from "./MobileProfileMenu/MobileProfileMenu";
+import MobileProfileMenu from "./MobileProfileMenu/MobileProfileMenu";
 
-export function MobileAuthButton({}) {
+const MobileAuthButton = ({}) => {
   const { data: session } = useSession();
 
   return (
@@ -49,3 +49,5 @@ export function MobileAuthButton({}) {
     </div>
   );
 }
+
+export default MobileAuthButton

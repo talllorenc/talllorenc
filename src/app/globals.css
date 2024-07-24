@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
+@layer base {
   body {
-      @apply dark:bg-[#232323] dark:text-white bg-white text-[#1F2328];
+    @apply dark:bg-gradient-to-r dark:from-black dark:to-slate-700 bg-gradient-to-r from-slate-300 to-white;
+    @apply dark:text-white text-[#1F2328];
   }
 }
 
@@ -16,8 +17,6 @@
 
 html,
 body {
-  /* background-color: white;
-  color: #1F2328; */
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -27,10 +26,8 @@ a {
   color: inherit;
 }
 
-.container{
+.container {
   max-width: 1280px;
   padding: 0 18px;
   margin: 0 auto;
 }
-
-

@@ -1,10 +1,10 @@
 import React from "react";
 import { IMenuLink } from "@/types/Menus";
 import Link from "next/link";
-import { FaAngleDoubleRight, FaCartPlus, FaTimes } from "react-icons/fa";
+import { FaAngleDoubleRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
-import { MobileAuthButton } from "../AuthButton/MobileAuthButton";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import MobileAuthButton from "../AuthButton/MobileAuthButton";
 
 interface IMobileHeaderProps {
   isMobileMenuOpen: boolean;
@@ -19,8 +19,8 @@ const headerLinks: IMenuLink[] = [
   },
   {
     id: 2,
-    title: "Beats",
-    path: "/beats",
+    title: "Solutions",
+    path: "/solutions",
   },
   {
     id: 3,
@@ -29,10 +29,10 @@ const headerLinks: IMenuLink[] = [
   },
 ];
 
-export function MobileHeader({
+const MobileHeader = ({
   isMobileMenuOpen,
   closeMobileMenu,
-}: IMobileHeaderProps) {
+}: IMobileHeaderProps) => {
   return (
     <AnimatePresence>
       {isMobileMenuOpen && (
@@ -57,7 +57,7 @@ export function MobileHeader({
           >
             <div className="flex flex-col text-black dark:text-white p-4 ">
               <div className="border-b border-gray-500 py-4">
-                <MobileAuthButton/>
+                <MobileAuthButton />
               </div>
 
               <div className="border-b border-gray-500 flex flex-col gap-4 py-4">
@@ -78,11 +78,12 @@ export function MobileHeader({
                 <p>Theme</p>
                 <ThemeSwitcher />
               </div>
-
             </div>
           </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
   );
-}
+};
+
+export default MobileHeader;

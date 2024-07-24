@@ -10,7 +10,7 @@ interface IInputProps {
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-export function Input({
+const Input = ({
   id,
   label,
   type = "text",
@@ -20,7 +20,7 @@ export function Input({
   value,
   onChange,
   onBlur,
-}: IInputProps) {
+}: IInputProps) => {
   return (
     <div className="relative pb-5 w-full">
       <input
@@ -55,3 +55,5 @@ export function Input({
     </div>
   );
 }
+
+export default Input

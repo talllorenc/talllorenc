@@ -6,13 +6,13 @@ import { useRouter } from "next/navigation";
 import { ILoginUser } from "@/types/AuthForms";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
-import { AuthSocials } from "../AuthSocials/AuthSocials";
-import { Input } from "../ui/Input";
+import AuthSocials from "../AuthSocials/AuthSocials";
+import Input from "../ui/Input";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { HomeButton } from "../ui/HomeButton";
+import HomeButton from "../ui/HomeButton";
 import { authenticate } from "@/lib/actions";
-import { FormErrors } from "./FormErrors";
+import FormErrors from "./FormErrors";
 import { Spinner } from "@nextui-org/react";
 
 const basicSchema = yup.object().shape({
@@ -20,7 +20,7 @@ const basicSchema = yup.object().shape({
   password: yup.string().required("*required"),
 });
 
-export function LoginForm() {
+const LoginForm = () => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -122,4 +122,6 @@ export function LoginForm() {
       </div>
     </form>
   );
-}
+};
+
+export default LoginForm;

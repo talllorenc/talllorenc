@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaAngleDoubleRight } from "react-icons/fa";
 
-export function HomeButton() {
+const HomeButton = () => {
   return (
     <Link
       href="/"
@@ -11,3 +11,5 @@ export function HomeButton() {
     </Link>
   );
 }
+
+export default HomeButton

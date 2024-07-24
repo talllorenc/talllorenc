@@ -1,8 +1,8 @@
 import { Fira_Mono } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "../../auth";
-import { ThemeProvider } from "next-themes";
 import { NextUIProvider } from "@nextui-org/react";
+import { ThemeProviderWrapper } from "@/providers/theme";
 import "./globals.css";
 
 const inter = Fira_Mono({
@@ -18,12 +18,12 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang="en" className={inter.className}>
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
         <NextUIProvider>
-          <ThemeProvider enableSystem={true} attribute="class">
+          <ThemeProviderWrapper>
             <SessionProvider session={session}>{children}</SessionProvider>
-          </ThemeProvider>
+          </ThemeProviderWrapper>
         </NextUIProvider>
       </body>
     </html>

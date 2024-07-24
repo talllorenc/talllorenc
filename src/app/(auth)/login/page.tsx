@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/AuthForms/LoginForm";
+import LoginForm from "@/components/AuthForms/LoginForm";
 import { Metadata } from "next";
 import { getSession } from "../../../lib/getSession";
 import { redirect } from "next/navigation";

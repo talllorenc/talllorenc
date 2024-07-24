@@ -2,9 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import { IMenuLink } from "@/types/Menus";
-import { useSession } from "next-auth/react";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import Image from "next/image";
 
 interface IMobileHeaderProps {
   isMenuOpen: boolean;
@@ -24,8 +22,7 @@ const profileMenuLinks: IMenuLink[] = [
   },
 ];
 
-export function ProfileMenu({ isMenuOpen, closeMenu }: IMobileHeaderProps) {
-  const { data: session } = useSession();
+const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
   return (
     <AnimatePresence>
       {isMenuOpen && (

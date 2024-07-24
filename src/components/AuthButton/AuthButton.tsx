@@ -9,7 +9,7 @@ interface IAuthButtonProps {
   closeMobileMenu: () => void;
 }
 
-export function AuthButton({ closeMobileMenu }: IAuthButtonProps) {
+const AuthButton = ({ closeMobileMenu }: IAuthButtonProps) => {
   const { data: session } = useSession();
   
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -62,3 +62,5 @@ export function AuthButton({ closeMobileMenu }: IAuthButtonProps) {
     </div>
   );
 }
+
+export default AuthButton
