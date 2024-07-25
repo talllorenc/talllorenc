@@ -52,7 +52,7 @@ const Header = () => {
             TALLLORENC
           </Link>
 
-          <nav className="hidden md:flex text-[#d3d3d3]">
+          <nav className="hidden md:flex">
             <ul className="flex items-end gap-6">
               {headerLinks.map((link) => {
                 const isActive = router === link.path;
