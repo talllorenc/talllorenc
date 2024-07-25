@@ -24,8 +24,8 @@ const BanerHome = () => {
       </Link>
 
       <div className="flex items-end mt-12">
-        <h1 className={`text-9xl font-bold ${dansing.className}`}>Tallorenc</h1>
-        <span className={`text-4xl  font-bold text-[#f31260]`}>DEV.</span>
+        <h1 className={`text-7xl md:text-9xl font-bold ${dansing.className}`}>Tallorenc</h1>
+        <span className={`text-2xl md:text-4xl  font-bold text-[#f31260]`}>DEV.</span>
       </div>
 
 
