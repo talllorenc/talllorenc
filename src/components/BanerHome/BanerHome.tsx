@@ -87,7 +87,7 @@ const BanerHome = () => {
 
       <div>
         <p className="mt-12 text-center text-base text-default-500">
-          © {new Date().getFullYear()} dev by talllorenc. Kazakhstan, Karaganda. All rights
+          © {new Date().getFullYear()} dev by A.L. Kazakhstan, Karaganda. All rights
           reserved.
         </p>
       </div>
