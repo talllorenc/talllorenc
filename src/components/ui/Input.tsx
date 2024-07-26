@@ -35,7 +35,7 @@ const Input = ({
         className={`block border rounded-md px-6 pt-6 pb-1 w-full text-md apperance-none focus:outline-none focus:ring-0 focus:border-[#f31260] peer bg-transparent ${
           error && touched
             ? "border border-[#FF3333]"
-            : "border border-[#d0d7deb3]"
+            : "border border-neutral-400 dark:border-[#d0d7deb3]"
         }`}
       />
 

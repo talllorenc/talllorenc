@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import Input from "../ui/Input";
 import { FaInfoCircle } from "react-icons/fa";
 import { Spinner } from "@nextui-org/react";
+import ButtonBack from "../ui/ButtonBack";
 
 const basicSchema = yup.object().shape({
   email: yup.string().required("*required").email("*invalid format"),

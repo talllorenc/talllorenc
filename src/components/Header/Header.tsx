@@ -13,8 +13,8 @@ import Image from "next/image";
 const headerLinks: IMenuLink[] = [
   {
     id: 1,
-    title: "Solutions",
-    path: "/solutions",
+    title: "About",
+    path: "/about",
   },
   {
     id: 2,
@@ -25,6 +25,11 @@ const headerLinks: IMenuLink[] = [
     id: 3,
     title: "Contact",
     path: "/contact",
+  },
+  {
+    id: 4,
+    title: "Solutions",
+    path: "/solutions",
   },
 ];
 
@@ -42,7 +47,7 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full fixed top-0 left-0 bg-transparent backdrop-blur z-50 `}
+      className={`w-full fixed top-0 left-0 backdrop-blur dark:bg-gradient-to-r dark:from-black/80 dark:to-slate-700/80 bg-gradient-to-r from-slate-300/80 to-white/80 z-50 `}
     >
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-end gap-8 ">

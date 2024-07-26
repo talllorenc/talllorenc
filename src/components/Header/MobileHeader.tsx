@@ -20,13 +20,23 @@ const headerLinks: IMenuLink[] = [
   },
   {
     id: 2,
-    title: "Solutions",
-    path: "/solutions",
+    title: "About",
+    path: "/about",
   },
   {
     id: 3,
+    title: "Tools",
+    path: "/tools",
+  },
+  {
+    id: 4,
     title: "Contact",
     path: "/contact",
+  },
+  {
+    id: 5,
+    title: "Solutions",
+    path: "/solutions",
   },
 ];
 

@@ -13,13 +13,18 @@ interface IMobileHeaderProps {
 const profileMenuLinks: IMenuLink[] = [
   {
     id: 1,
-    title: "Dashboard",
-    path: "/dashboard",
+    title: "Profile",
+    path: "/user",
   },
   {
     id: 2,
+    title: "Dashboard",
+    path: "/user/dashboard",
+  },
+  {
+    id: 3,
     title: "Settings",
-    path: "/settings",
+    path: "/user/settings",
   },
 ];
 
