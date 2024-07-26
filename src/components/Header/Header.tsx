@@ -8,6 +8,7 @@ import MobileHeader from "./MobileHeader";
 import AuthButton from "../AuthButton/AuthButton";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const headerLinks: IMenuLink[] = [
   {
@@ -47,9 +48,15 @@ const Header = () => {
         <div className="flex items-end gap-8 ">
           <Link
             href="/"
-            className="text-3xl font-bold hover:scale-90 transition-all duration-200"
+            className="text-3xl font-bold transition-all duration-200  hover:scale-90 "
           >
-            TALLLORENC
+            <Image
+              src="/main_logo.png"
+              alt="Logo"
+              width={40}
+              height={40}
+              className="rounded-lg shadow-buttonRed"
+            />
           </Link>
 
           <nav className="hidden md:flex">

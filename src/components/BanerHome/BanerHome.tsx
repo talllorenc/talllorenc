@@ -1,5 +1,6 @@
 import { FaAngleDoubleRight } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 import { Dancing_Script } from "next/font/google";
 
 const dansing = Dancing_Script({
@@ -24,11 +25,72 @@ const BanerHome = () => {
       </Link>
 
       <div className="flex items-end mt-12">
-        <h1 className={`text-7xl md:text-9xl font-bold ${dansing.className}`}>Tallorenc</h1>
-        <span className={`text-2xl md:text-4xl  font-bold text-[#f31260]`}>DEV.</span>
+        <h1 className={`text-7xl md:text-9xl font-bold ${dansing.className}`}>
+          Talllorenc
+        </h1>
+        <span className={`text-2xl md:text-4xl  font-bold text-[#f31260]`}>
+          DEV.
+        </span>
       </div>
 
+      <div className="flex gap-8 items-center mt-12">
+        <a
+          href="#"
+          className="transition-all duration-200  hover:scale-90 rounded-full"
+          target="_blank"
+        >
+          <Image
+            src="/SotialsIcons/telegram.png"
+            alt="telegram"
+            width={40}
+            height={40}
+            className=""
+          />
+        </a>
+        <a
+          href="#"
+          className="transition-all duration-200  hover:scale-90 rounded-full"
+          target="_blank"
+        >
+          <Image
+            src="/SotialsIcons/google.png"
+            alt="google"
+            width={40}
+            height={40}
+          />
+        </a>
+        <a
+          href="#"
+          className="transition-all duration-200  hover:scale-90 rounded-full"
+          target="_blank"
+        >
+          <Image
+            src="/SotialsIcons/instagram.png"
+            alt="instagram"
+            width={40}
+            height={40}
+          />
+        </a>
+        <a
+          href="#"
+          className="transition-all duration-200  hover:scale-90 rounded-full"
+          target="_blank"
+        >
+          <Image
+            src="/SotialsIcons/github.png"
+            alt="github"
+            width={40}
+            height={40}
+          />
+        </a>
+      </div>
 
+      <div>
+        <p className="mt-12 text-center text-base text-default-500">
+          © {new Date().getFullYear()} dev by talllorenc. Kazakhstan, Karaganda. All rights
+          reserved.
+        </p>
+      </div>
     </div>
   );
 };
