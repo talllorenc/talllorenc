@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
-const {nextui} = require("@nextui-org/react");
+const { nextui } = require("@nextui-org/react");
 
 const config: Config = {
-  darkMode: 'class',
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -31,6 +31,9 @@ const config: Config = {
         buttonBlueBrick: "0px 0px 7px 4px rgba(65,182,222, 1)",
       },
       keyframes: {
+        border: {
+          to: { "--border-angle": "360deg" },
+        },
         "slide-tl": {
           "0%": {
             transform: "translateY(0) translateX(0)",
@@ -66,6 +69,7 @@ const config: Config = {
         },
       },
       animation: {
+        'border': 'border 4s linear infinite',
         "tracking-in-expand":
           "tracking-in-expand 5s ease-in 2s  alternate both",
         "slide-tl":

@@ -33,7 +33,7 @@ const BanerHome = () => {
         </span>
       </div>
 
-      <div className="flex gap-8 items-center mt-12">
+      <div className="flex gap-8 items-center mt-4">
         <a
           href="#"
           className="transition-all duration-200  hover:scale-90 rounded-full"
@@ -85,10 +85,18 @@ const BanerHome = () => {
         </a>
       </div>
 
-      <div>
-        <p className="mt-12 text-center text-base text-default-500">
-          © {new Date().getFullYear()} dev by A.L. Kazakhstan, Karaganda. All rights
-          reserved.
+      <Link
+        href="/solutions"
+        className="[background:linear-gradient(45deg,#f31260,theme(colors.slate.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.slate.600/.48))_border-box] rounded-2xl border border-transparent animate-border flex items-center gap-4 mt-12 transition-all duration-200 text-white px-6 py-3 font-bold rounded-md hover:shadow-buttonRedBrick"
+      >
+        Get started
+        <FaAngleDoubleRight />
+      </Link>
+
+      <div className="mt-12">
+        <p className=" text-center text-base text-default-500">
+          © {new Date().getFullYear()} dev by A.L. Kazakhstan, Karaganda. All
+          rights reserved.
         </p>
       </div>
     </div>
@@ -96,3 +104,4 @@ const BanerHome = () => {
 };
 
 export default BanerHome;
+

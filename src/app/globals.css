@@ -31,3 +31,10 @@ a {
   padding: 0 18px;
   margin: 0 auto;
 }
+
+
+@property --border-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: '<angle>';
+}
