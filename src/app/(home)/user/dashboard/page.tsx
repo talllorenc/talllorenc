@@ -1,13 +1,18 @@
-import { auth } from "../../../../../auth";
+import Layout from "@/components/Layout/Layout";
+import { Dancing_Script } from "next/font/google";
+
+const dansing = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
 
 const DashboardPage = async () => {
-  const session = await auth();
-
   return (
-    <div className="h-screen flex flex-col items-center justify-center">
-      <h1>DashboardPage page</h1>
-      <p>{session?.user?.name}</p>
-    </div>
+    <Layout>
+      <h1 className={`text-6xl font-bold mb-8 ${dansing.className}`}>
+        Dashboard
+      </h1>
+    </Layout>
   );
 };
 

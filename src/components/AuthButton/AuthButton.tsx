@@ -10,21 +10,21 @@ interface IAuthButtonProps {
 }
 
 const AuthButton = ({ closeMobileMenu }: IAuthButtonProps) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setMenuOpen(!isMenuOpen);
   };
 
-  const closeMenu = () => {
+  const closeMenu = (): void => {
     setMenuOpen(false);
   };
 
   return (
     <div>
-      {session?.user ? (
+      {status === 'authenticated' ? (
         <button
           onClick={toggleMenu}
           className="transition-all duration-200 border-4 border-[#41b6de] rounded-full hover:scale-110"

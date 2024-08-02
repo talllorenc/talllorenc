@@ -27,7 +27,7 @@ const MobileProfileMenu = () => {
   return (
     <nav>
       <ul className="flex flex-col gap-4">
-        {mobileHeaderLinks.map((link) => {
+        {mobileHeaderLinks.map((link: IUserMenuLink) => {
           const isActive = router === link.path;
           return (
             <li

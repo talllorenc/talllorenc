@@ -35,13 +35,13 @@ const headerLinks: IMenuLink[] = [
 
 const Header = () => {
   const router = usePathname();
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
+  const toggleMobileMenu = (): void => {
+    setMobileMenuOpen(prev => !prev);
   };
 
-  const closeMobileMenu = () => {
+  const closeMobileMenu = (): void => {
     setMobileMenuOpen(false);
   };
 
@@ -66,7 +66,7 @@ const Header = () => {
 
           <nav className="hidden md:flex">
             <ul className="flex items-end gap-6">
-              {headerLinks.map((link) => {
+              {headerLinks.map((link: IMenuLink) => {
                 const isActive = router === link.path;
                 return (
                   <li

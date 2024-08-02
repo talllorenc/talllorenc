@@ -29,6 +29,8 @@ const config: Config = {
         buttonRedBrick: "0px 0px 7px 4px rgba(243,18,96, 1)",
         buttonBlue: "2px 2px 7px 1px rgba(65,182,222, 1)",
         buttonBlueBrick: "0px 0px 7px 4px rgba(65,182,222, 1)",
+        buttonGreen: "2px 2px 7px 1px rgba(34,197,94, 1)",
+        buttonGreenBrick: "0px 0px 7px 4px rgba(34,197,94, 1)",
       },
       keyframes: {
         border: {
@@ -69,7 +71,7 @@ const config: Config = {
         },
       },
       animation: {
-        'border': 'border 4s linear infinite',
+        border: "border 4s linear infinite",
         "tracking-in-expand":
           "tracking-in-expand 5s ease-in 2s  alternate both",
         "slide-tl":

@@ -74,7 +74,7 @@ const MobileHeader = ({
 
               <nav className="border-b border-gray-500 flex flex-col gap-4 py-4">
                 <ul className="flex flex-col gap-4">
-                  {headerLinks.map((link) => {
+                  {headerLinks.map((link: IMenuLink) => {
                     const isActive = router === link.path;
                     return (
                       <li

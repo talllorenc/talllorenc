@@ -6,10 +6,10 @@ import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign up | talllorenc",
-  description: "Talllorenc music site",
+  description: "Talllorenc base",
   openGraph: {
     title: "Sign up | talllorenc",
-    description: "Talllorenc music site",
+    description: "Talllorenc base",
     url: "/register",
     siteName: "talllorenc",
     locale: "en",

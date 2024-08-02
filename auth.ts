@@ -6,6 +6,7 @@ import axios from "axios";
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
   },
   providers: [
     Google({
@@ -48,9 +49,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email: user.email,
-            name: user.name,
-            image: user.image,
+            idToken: account.id_token, 
           }),
         });
 
@@ -58,23 +57,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           console.error("Failed to create user");
           return false;
         }
+
+        const userData = await res.json();
+        if (userData && userData.role) {
+          user.role = userData.role;
+        }
       }
       return true;
     },
     async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
-        token.image = user.image;
-      }
-      return token;
+      return {...token, ...user};
     },
     async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id as string;
-        session.user.role = token.role as string;
-        session.user.image = token.image as string;
-      }
+      session.user = token as any;
       return session;
     },
   },

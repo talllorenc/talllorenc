@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Layout from "@/components/Layout/Layout";
-import ContactForm from "@/components/ContactForm/ContactForm";
 import { Dancing_Script } from "next/font/google";
 
 const dansing = Dancing_Script({
@@ -9,27 +8,24 @@ const dansing = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Contact me | talllorenc",
+  title: "Useful tools | talllorenc",
   description: "Talllorenc base",
   openGraph: {
-    title: "Contact me | talllorenc",
+    title: "Useful tools | talllorenc",
     description: "Talllorenc base",
-    url: "/contact",
+    url: "/tools",
     siteName: "talllorenc",
     locale: "en",
     type: "website",
   },
 };
 
-const ContactPage = () => {
+const ToolsPage = async () => {
   return (
     <Layout>
-      <h1 className={`text-6xl font-bold mb-8 ${dansing.className}`}>
-        Contact
-      </h1>
-      <ContactForm />
+      <h1 className={`text-6xl font-bold mb-8 ${dansing.className}`}>Tools</h1>
     </Layout>
   );
 };
 
-export default ContactPage;
+export default ToolsPage;

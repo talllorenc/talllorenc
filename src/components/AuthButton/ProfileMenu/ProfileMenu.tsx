@@ -47,7 +47,7 @@ const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
           <div className="flex flex-col gap-4">
             <nav className="py-4 border-b border-gray-500">
               <ul className="flex flex-col gap-6">
-                {profileMenuLinks.map((link) => {
+                {profileMenuLinks.map((link: IMenuLink) => {
                   const isActive = router === link.path;
                   return (
                     <li

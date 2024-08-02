@@ -5,7 +5,7 @@ import { Switch } from "@nextui-org/react";
 import { FaSun, FaMoon, FaDesktop } from "react-icons/fa";
 
 const ThemeSwitcher = () => {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
   const { theme, setTheme } = useTheme();
   const isActive = (currentTheme: string) => currentTheme === theme;
 

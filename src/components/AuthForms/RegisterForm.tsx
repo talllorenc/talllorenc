@@ -1,7 +1,7 @@
 "use client";
 
 import * as yup from "yup";
-import { useFormik } from "formik";
+import { FormikHelpers, useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { IRegisterUser } from "@/types/AuthForms";
 import { FaArrowRight, FaInfoCircle } from "react-icons/fa";
@@ -11,6 +11,7 @@ import Input from "../ui/Input";
 import HomeButton from "../ui/HomeButton";
 import { useState } from "react";
 import { Spinner } from "@nextui-org/react";
+import { register } from "../../lib/actions";
 import FormErrors from "./FormErrors";
 
 const loginRules = /^[A-Za-z0-9]+$/;
@@ -39,7 +40,7 @@ const basicSchema = yup.object().shape({
 const RegisterForm = () => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     values,
@@ -49,7 +50,7 @@ const RegisterForm = () => {
     handleSubmit,
     errors,
     isValid,
-  } = useFormik({
+  } = useFormik<IRegisterUser>({
     initialValues: {
       email: "",
       name: "",
@@ -57,16 +58,23 @@ const RegisterForm = () => {
       confirmPassword: "",
     },
     validationSchema: basicSchema,
-    onSubmit: async (values: IRegisterUser, { resetForm }) => {
+    onSubmit: async (
+      values: IRegisterUser,
+      { resetForm }: FormikHelpers<IRegisterUser>
+    ) => {
+      setLoading(true);
+      setErrorMessage(null);
       try {
-        // const error = await authenticate(values);
-        // if (error) {
-        //   setErrorMessage(error);
-        // } else {
-        //   router.push("/");
-        // }
-      } catch (error) {
-        setErrorMessage("An unexpected error occurred");
+        const res = await register(values);
+
+        if (!res) {
+          setErrorMessage("An unexpected error occurred");
+          return;
+        }
+
+        router.push("/login");
+      } catch (error: any) {
+        setErrorMessage(error.message || "An unexpected error occurred");
       } finally {
         setLoading(false);
       }

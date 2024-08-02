@@ -6,10 +6,10 @@ import AuthLayout from "@/components/Layout/AuthLayout";
 
 export const metadata: Metadata = {
   title: "Sign in | talllorenc",
-  description: "Talllorenc music site",
+  description: "Talllorenc base",
   openGraph: {
     title: "Sign in | talllorenc",
-    description: "Talllorenc music site",
+    description: "Talllorenc base",
     url: "/login",
     siteName: "talllorenc",
     locale: "en",

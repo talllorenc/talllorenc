@@ -1,7 +1,7 @@
 "use client";
 
 import * as yup from "yup";
-import { useFormik } from "formik";
+import { FormikHelpers, useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { ILoginUser } from "@/types/AuthForms";
 import { FaArrowRight } from "react-icons/fa";
@@ -9,7 +9,6 @@ import Link from "next/link";
 import AuthSocials from "../AuthSocials/AuthSocials";
 import Input from "../ui/Input";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 import HomeButton from "../ui/HomeButton";
 import { authenticate } from "@/lib/actions";
 import FormErrors from "./FormErrors";
@@ -23,7 +22,7 @@ const basicSchema = yup.object().shape({
 const LoginForm = () => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     values,
@@ -33,21 +32,20 @@ const LoginForm = () => {
     handleSubmit,
     errors,
     isValid,
-  } = useFormik({
+  } = useFormik<ILoginUser>({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: basicSchema,
-    onSubmit: async (values: ILoginUser) => {
+    onSubmit: async (values: ILoginUser, { resetForm }: FormikHelpers<ILoginUser>) => {
       setLoading(true);
       try {
         const error = await authenticate(values);
-
         if (error) {
           setErrorMessage(error);
         } else {
-          router.push("/");
+          window.location.href = '/';
         }
       } catch (error) {
         setErrorMessage("An unexpected error occurred");
