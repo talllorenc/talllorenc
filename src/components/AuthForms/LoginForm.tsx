@@ -1,123 +1,99 @@
 "use client";
 
-import * as yup from "yup";
-import { FormikHelpers, useFormik } from "formik";
-import { useRouter } from "next/navigation";
-import { ILoginUser } from "@/types/AuthForms";
-import { FaArrowRight } from "react-icons/fa";
-import Link from "next/link";
-import AuthSocials from "../AuthSocials/AuthSocials";
+import SubmitButton from "@/components/ui/SubmitButton";
+import { FaCaretRight, FaEnvelope, FaUnlock } from "react-icons/fa";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import Input from "../ui/Input";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import HomeButton from "../ui/HomeButton";
-import { authenticate } from "@/lib/actions";
+import { useMutation } from "@tanstack/react-query";
+import Auth from "@/services/auth.service";
+import { ILoginUser } from "@/types/AuthForms";
 import FormErrors from "./FormErrors";
-import { Spinner } from "@nextui-org/react";
 
-const basicSchema = yup.object().shape({
-  email: yup.string().required("*required").email("*invalid format"),
-  password: yup.string().required("*required"),
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: Yup.string().required("Password is required"),
 });
 
 const LoginForm = () => {
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const {
-    values,
-    handleChange,
-    touched,
-    handleBlur,
-    handleSubmit,
-    errors,
-    isValid,
-  } = useFormik<ILoginUser>({
-    initialValues: {
-      email: "",
-      password: "",
+  const mutation = useMutation({
+    mutationFn: (regObj: {
+      email: string;
+      password: string;
+    }) => Auth.signIn(regObj),
+    onSuccess: () => {
+      setIsLoading(false);
+      setServerError(null);
+      router.push("/");
     },
-    validationSchema: basicSchema,
-    onSubmit: async (values: ILoginUser, { resetForm }: FormikHelpers<ILoginUser>) => {
-      setLoading(true);
-      try {
-        const error = await authenticate(values);
-        if (error) {
-          setErrorMessage(error);
-        } else {
-          window.location.href = '/';
-        }
-      } catch (error) {
-        setErrorMessage("An unexpected error occurred");
-      } finally {
-        setLoading(false);
-      }
+    onError: (error: any) => {
+      setIsLoading(false);
+      setServerError(
+        error.response?.data?.message ||
+          "Something went wrong. Please try again."
+      );
+    },
+    onMutate: () => {
+      setIsLoading(true);
     },
   });
 
+  const { values, handleChange, touched, handleBlur, handleSubmit, errors } =
+    useFormik<ILoginUser>({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema,
+      onSubmit: async (values) => {
+        setServerError(null);
+        mutation.mutate(values);
+      },
+    });
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-1 w-full mx-auto"
-    >
-      {loading && (
-        <div className="absolute inset-0 bg-gray-500 bg-opacity-70 flex justify-center items-center z-10">
-          <Spinner size="lg" color="danger" />
-        </div>
-      )}
-      <div className="flex flex-col gap-2 text-center md:text-left">
-        <h2 className="text-xl font-bold">TALLLORENC | Sign in</h2>
-        <p className="text-neutral-500 dark:text-neutral-400">
-          Please provide all the necessary information
-        </p>
-      </div>
-
-      <AuthSocials />
-
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
       <Input
         id="email"
         label="Email address"
         type="email"
-        placeholder=" "
+        placeholder="address@gmail.com"
+        icon={<FaEnvelope />}
         error={errors.email}
         touched={touched.email}
         value={values.email}
         onChange={handleChange}
         onBlur={handleBlur}
       />
-
       <Input
         id="password"
         label="Password"
         type="password"
-        placeholder=" "
+        placeholder="******"
+        icon={<FaUnlock />}
         error={errors.password}
         touched={touched.password}
         value={values.password}
         onChange={handleChange}
         onBlur={handleBlur}
       />
+      <SubmitButton
+        text="Log in"
+        gradient={["#434343", "#000000"]}
+        textColor="white"
+        icon={<FaCaretRight />}
+        isDisabled={isLoading}
+      />
 
-      {errorMessage && <FormErrors message={errorMessage || ""} />}
-
-      <button
-        type="submit"
-        className="flex items-center justify-center bg-[#f31260] text-white font-bold hover:shadow-buttonRedBrick shadow-buttonRed transition-all duration-200 gap-2 rounded-md py-2 mt-2"
-      >
-        ENTER
-        <FaArrowRight />
-      </button>
-
-      <div className="flex flex-col items-center gap-4">
-        <p className="text-neutral-500 dark:text-neutral-400 text-center mt-4">
-          Still no account?
-          <Link className="underline hover:text-[#f31260]" href="/register">
-            Register
-          </Link>
-        </p>
-
-        <HomeButton />
-      </div>
+      {serverError && <FormErrors message={serverError} />}
     </form>
   );
 };

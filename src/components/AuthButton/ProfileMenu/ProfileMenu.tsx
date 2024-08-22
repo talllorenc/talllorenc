@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import LogoutButton from "../LogoutButton/LogoutButton";
 import { IMenuLink } from "@/types/Menus";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { usePathname } from "next/navigation";
@@ -64,7 +63,7 @@ const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
               </ul>
             </nav>
 
-            <LogoutButton />
+            <div>LOGOUT</div>
           </div>
         </motion.div>
       )}

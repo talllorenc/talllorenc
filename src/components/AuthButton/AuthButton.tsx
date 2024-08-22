@@ -10,8 +10,6 @@ interface IAuthButtonProps {
 }
 
 const AuthButton = ({ closeMobileMenu }: IAuthButtonProps) => {
-  const { data: session, status } = useSession();
-  
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
   const toggleMenu = (): void => {
@@ -24,43 +22,17 @@ const AuthButton = ({ closeMobileMenu }: IAuthButtonProps) => {
 
   return (
     <div>
-      {status === 'authenticated' ? (
-        <button
-          onClick={toggleMenu}
-          className="transition-all duration-200 border-4 border-[#41b6de] rounded-full hover:scale-110"
-        >
-          {session?.user?.image ? (
-            <Image
-              src={session.user.image}
-              alt="Profile"
-              width={32}
-              height={32}
-              className="rounded-full"
-            />
-          ) : (
-            <Image
-              src='/Auth/no-user.png'
-              alt="Profile"
-              width={32}
-              height={32}
-              className="rounded-full"
-            />
-          )}
-        </button>
-      ) : (
-        <Link
-          onClick={closeMobileMenu}
-          href="/login"
-          className="transition-all duration-200 rounded-md border-0 bg-[#41b6de] text-white font-bold hover:shadow-buttonBlueBrick shadow-buttonBlue flex items-center justify-center gap-2 rounded px-4 py-2"
-        >
-          <FaRegUser className="text-2xl text-xl" />
-          <p className="font-bold">Log in </p>
-        </Link>
-      )}
+      <Link
+        href="/sign-in"
+        className="transition-all duration-200 rounded-md border-0 bg-[#41b6de] text-white font-bold hover:shadow-buttonBlueBrick shadow-buttonBlue flex items-center justify-center gap-2 rounded px-4 py-2"
+      >
+        <FaRegUser className="text-2xl text-xl" />
+        <p className="font-bold">Log in </p>
+      </Link>
 
       <ProfileMenu isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
     </div>
   );
-}
+};
 
-export default AuthButton
+export default AuthButton;

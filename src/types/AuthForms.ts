@@ -1,6 +1,6 @@
 export interface IRegisterUser {
   email: string;
-  name: string;
+  username: string;
   password: string;
   confirmPassword: string;
 }
@@ -13,4 +13,13 @@ export interface ILoginUser {
 export interface IFormErrors {
   message?: string;
 }
+
+export interface IFormErrors {
+  message?: string;
+}
+
+export interface IFormSuccess {
+  message?: string;
+}
+
 

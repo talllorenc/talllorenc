@@ -3,6 +3,7 @@ interface IInputProps {
   label: string;
   type?: string;
   placeholder?: string;
+  icon?: React.ReactNode;
   error?: string | undefined;
   touched?: boolean | undefined;
   value: string;
@@ -15,6 +16,7 @@ const Input = ({
   label,
   type = "text",
   placeholder,
+  icon,
   error,
   touched,
   value,
@@ -22,38 +24,37 @@ const Input = ({
   onBlur,
 }: IInputProps) => {
   return (
-    <div className="relative pb-5 w-full">
-      <input
-        id={id}
-        name={id}
-        type={type}
-        placeholder={placeholder}
-        autoComplete="off"
-        onBlur={onBlur}
-        value={value}
-        onChange={onChange}
-        className={`block border rounded-md px-6 pt-6 pb-1 w-full text-md apperance-none focus:outline-none focus:ring-0 focus:border-[#f31260] peer bg-transparent ${
-          error && touched
-            ? "border border-[#FF3333]"
-            : "border border-neutral-400 dark:border-[#d0d7deb3]"
-        }`}
-      />
-
-      <label
-        htmlFor={id}
-        className="absolute flex items-center gap-1 text-md text-neutral-500 dark:text-neutral-400 duration-150 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-6 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3"
-      >
-        <p className="text-[#FF3333] text-md">*</p>
+    <div className="flex gap-1 flex-col w-full">
+      <label htmlFor={id} className="font-medium">
         {label}
       </label>
-
+      <div className="relative flex items-center">
+        {icon && (
+          <div className="absolute left-3 flex items-center text-neutral-200">
+            {icon}
+          </div>
+        )}
+        <input
+          id={id}
+          name={id}
+          type={type}
+          placeholder={placeholder}
+          autoComplete="off"
+          onBlur={onBlur}
+          value={value}
+          onChange={onChange}
+          className={`w-full py-1 pl-10 pr-4 rounded-lg appearance-none focus:outline-none focus:ring-4 focus:ring-neutral-200 bg-transparent ${
+            error && touched
+              ? "border border-[#FF3333]"
+              : "border border-neutral-200"
+          }`}
+        />
+      </div>
       {touched && error && (
-        <span className="absolute text-[#FF3333] bottom-0 left-0 text-sm">
-          {error}
-        </span>
+        <span className="text-[#FF3333] text-sm">{error}</span>
       )}
     </div>
   );
-}
+};
 
-export default Input
+export default Input;

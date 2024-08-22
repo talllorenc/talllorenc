@@ -1,8 +1,6 @@
-import LoginForm from "@/components/AuthForms/LoginForm";
 import { Metadata } from "next";
-import { getSession } from "../../../lib/getSession";
-import { redirect } from "next/navigation";
 import AuthLayout from "@/components/Layout/AuthLayout";
+import LoginPage from "@/components/Pages/LoginPage";
 
 export const metadata: Metadata = {
   title: "Sign in | talllorenc",
@@ -10,23 +8,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sign in | talllorenc",
     description: "Talllorenc base",
-    url: "/login",
+    url: "/sign-in",
     siteName: "talllorenc",
     locale: "en",
     type: "website",
   },
 };
 
-const LoginPage = async () => {
-  const session = await getSession();
-  const user = session?.user;
-  if (user) redirect("/");
-
+const page = async () => {
   return (
     <AuthLayout>
-      <LoginForm />
+      <LoginPage />
     </AuthLayout>
   );
 };
 
-export default LoginPage;
+export default page;

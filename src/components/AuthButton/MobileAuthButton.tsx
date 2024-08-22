@@ -2,7 +2,6 @@ import { useSession } from "next-auth/react";
 import { FaRegUser } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-import LogoutButton from "./LogoutButton/LogoutButton";
 import MobileProfileMenu from "./MobileProfileMenu/MobileProfileMenu";
 
 const MobileAuthButton = ({}) => {
@@ -35,7 +34,7 @@ const MobileAuthButton = ({}) => {
 
           <MobileProfileMenu />
 
-          <LogoutButton />
+          <div>LOGOUT</div>
         </div>
       ) : (
         <Link
