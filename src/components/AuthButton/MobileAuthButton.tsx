@@ -4,7 +4,6 @@ import Image from "next/image";
 import MobileProfileMenu from "./ProfileMenu/MobileProfileMenu";
 import useAuth from "@/hooks/useAuth";
 import MountedSpinner from "../ui/MountedSpinner";
-import SignOutButton from "./SignOutButton/SignOutButton";
 
 const MobileAuthButton = () => {
   const { user, isPending, isSuccess } = useAuth();
@@ -29,8 +28,6 @@ const MobileAuthButton = () => {
           </div>
 
           <MobileProfileMenu />
-
-          <SignOutButton/>
         </div>
       ) : (
         <Link

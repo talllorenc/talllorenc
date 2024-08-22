@@ -87,9 +87,8 @@ const LoginForm = () => {
       />
       <SubmitButton
         text="Log in"
-        gradient={["#434343", "#000000"]}
-        textColor="white"
         icon={<FaCaretRight />}
+        buttonColor="#F31260"
         isDisabled={isLoading}
       />
 

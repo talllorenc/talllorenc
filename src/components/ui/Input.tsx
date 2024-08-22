@@ -30,7 +30,7 @@ const Input = ({
       </label>
       <div className="relative flex items-center">
         {icon && (
-          <div className="absolute left-3 flex items-center text-neutral-200">
+          <div className="absolute left-3 flex items-center text-neutral-500 dark:text-neutral-200">
             {icon}
           </div>
         )}
@@ -43,10 +43,10 @@ const Input = ({
           onBlur={onBlur}
           value={value}
           onChange={onChange}
-          className={`w-full py-1 pl-10 pr-4 rounded-lg appearance-none focus:outline-none focus:ring-4 focus:ring-neutral-200 bg-transparent ${
+          className={`w-full py-1 pl-10 pr-4 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-neutral-200 bg-transparent ${
             error && touched
               ? "border border-[#FF3333]"
-              : "border border-neutral-200"
+              : "border border-neutral-500 dark:border-neutral-200"
           }`}
         />
       </div>

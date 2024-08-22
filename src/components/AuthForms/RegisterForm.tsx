@@ -150,8 +150,7 @@ const RegisterForm = () => {
       />
       <Button
         text="Sign up"
-        gradient={["#434343", "#000000"]}
-        textColor="white"
+        buttonColor="#F31260"
         icon={<FaCaretRight />}
         isDisabled={isLoading}
       />

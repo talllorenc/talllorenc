@@ -2,6 +2,7 @@ import { IUserMenuLink } from "@/types/Menus";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import SignOutButton from "../SignOutButton/SignOutButton";
 
 const mobileHeaderLinks: IUserMenuLink[] = [
   {
@@ -44,6 +45,7 @@ const MobileProfileMenu = () => {
           );
         })}
       </ul>
+      <SignOutButton/>
     </nav>
   );
 };

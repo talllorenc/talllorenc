@@ -30,15 +30,15 @@ const SubmitButton: React.FC<ISubmitButtonProps> = ({
         background: backgroundStyle,
         color: textColor,
       }}
-      className={`flex items-center justify-center gap-2 border border-neutral-900 w-full py-1 rounded-lg hover:opacity-90 transition-all duration-200 ${
-        isDisabled ? "cursor-not-allowed opacity-90" : "cursor-pointer"
+      className={`flex items-center justify-center gap-2 w-full py-1 rounded-lg hover:opacity-90 transition-all duration-200 ${
+        isDisabled ? "cursor-not-allowed opacity-80" : "cursor-pointer"
       }`}
     >
       {isDisabled ? (
         <Spinner />
       ) : (
         <>
-          <span>{text}</span>
+          <span className="font-bold">{text}</span>
           {icon && <div>{icon}</div>}
         </>
       )}

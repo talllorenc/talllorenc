@@ -1,12 +1,6 @@
 import { Metadata } from "next";
 import Layout from "@/components/Layout/Layout";
-import ContactForm from "@/components/ContactForm/ContactForm";
-import { Dancing_Script } from "next/font/google";
-
-const dansing = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
+import ContactPage from "@/components/Pages/ContactPage";
 
 export const metadata: Metadata = {
   title: "Contact me | talllorenc",
@@ -21,15 +15,12 @@ export const metadata: Metadata = {
   },
 };
 
-const ContactPage = () => {
+const page = () => {
   return (
     <Layout>
-      <h1 className={`text-6xl font-bold mb-8 ${dansing.className}`}>
-        Contact
-      </h1>
-      <ContactForm />
+      <ContactPage />
     </Layout>
   );
 };
 
-export default ContactPage;
+export default page;
