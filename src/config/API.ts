@@ -4,6 +4,7 @@ export const API = {
     auth: {
         SIGNIN: `${API_URL}/auth/sign-in`,
         SIGNUP: `${API_URL}/auth/sign-up`,
+        LOGOUT: `${API_URL}/auth/logout`
     },
 
     user:{

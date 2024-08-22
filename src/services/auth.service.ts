@@ -29,6 +29,10 @@ class Auth {
       confirmPassword,
     });
   }
+
+  logout(){
+    return axiosInstance.get(`${API.auth.LOGOUT}`)
+  }
 }
 
 const authService = new Auth();

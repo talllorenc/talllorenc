@@ -1,8 +1,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { IMenuLink } from "@/types/Menus";
-import { FaAngleDoubleRight } from "react-icons/fa";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { FaCog } from "react-icons/fa";
+import SignOutButton from "../SignOutButton/SignOutButton";
+import useAuth from "@/hooks/useAuth";
+import { Spinner } from "@nextui-org/react";
+import MountedSpinner from "@/components/ui/MountedSpinner";
 
 interface IMobileHeaderProps {
   isMenuOpen: boolean;
@@ -29,41 +34,62 @@ const profileMenuLinks: IMenuLink[] = [
 
 const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
   const router = usePathname();
+  const { user, isPending, isSuccess } = useAuth();
 
   return (
     <AnimatePresence>
       {isMenuOpen && (
         <motion.div
-          className="right-4 border border-[#41b6de] bg-[#f4f6f8] dark:bg-[#2c394a] fixed top-[75px] w-[250px] backdrop-blur p-4 rounded-lg"
-          initial={{ opacity: 0 }}
+          className="right-4 fixed top-[75px] z-50 w-full max-w-xs"
+          initial={{ opacity: 0, translateY: -20 }}
           animate={{
-            opacity: isMenuOpen ? 1 : 0,
+            opacity: 1,
+            translateY: 0,
           }}
           transition={{ duration: 0.2 }}
-          exit={{ opacity: 0 }}
+          exit={{ opacity: 0, translateY: -20 }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex flex-col gap-4">
-            <nav className="py-4 border-b border-gray-500">
-              <ul className="flex flex-col gap-6">
-                {profileMenuLinks.map((link: IMenuLink) => {
-                  const isActive = router === link.path;
-                  return (
-                    <li
-                      key={link.id}
-                      className={`flex justify-between items-center hover:text-[#41b6de] transition-all duration-200 ${
-                        isActive ? "text-[#41b6de]" : ""
+          <div className="flex flex-col text-black overflow-auto rounded-xl shadow-buttonDark text-sm">
+            <div className="flex items-center gap-4 bg-white p-4 rounded-t-xl border-b border-neutral-200">
+              {isPending ? (
+                <MountedSpinner/>
+              ) : isSuccess && user ? (
+                <>
+                  <Image
+                    src={user.image || "/no-user.png"}
+                    alt="User"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
+                  <div className="flex flex-col overflow-hidden">
+                    <p className="truncate font-medium">{user.email}</p>
+                    <p className="truncate text-gray-500">{user.username}</p>
+                  </div>
+                </>
+              ) : (
+                <p className="text-gray-500">User not found</p>
+              )}
+            </div>
+
+            <div className="flex flex-col bg-neutral-100 rounded-b-xl">
+              <div className="flex flex-col border-b border-neutral-200">
+                {profileMenuLinks.map((link) => (
+                  <Link key={link.id} href={link.path} onClick={closeMenu}>
+                    <div
+                      className={`flex items-center gap-2 p-4 hover:bg-neutral-200 transition-colors ${
+                        router === link.path ? "bg-neutral-300" : ""
                       }`}
                     >
-                      <Link href={link.path}>{link.title}</Link>
-                      <FaAngleDoubleRight/>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
+                      <span>{link.title}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
 
-            <div>LOGOUT</div>
+              <SignOutButton />
+            </div>
           </div>
         </motion.div>
       )}

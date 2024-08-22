@@ -1,52 +1,48 @@
-import { useSession } from "next-auth/react";
 import { FaRegUser } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-import MobileProfileMenu from "./MobileProfileMenu/MobileProfileMenu";
+import MobileProfileMenu from "./ProfileMenu/MobileProfileMenu";
+import useAuth from "@/hooks/useAuth";
+import MountedSpinner from "../ui/MountedSpinner";
+import SignOutButton from "./SignOutButton/SignOutButton";
 
-const MobileAuthButton = ({}) => {
-  const { data: session } = useSession();
+const MobileAuthButton = () => {
+  const { user, isPending, isSuccess } = useAuth();
 
   return (
     <div>
-      {session?.user ? (
+      {isPending ? (
+        <div className="flex justify-center items-center h-full">
+          <MountedSpinner/>
+        </div>
+      ) : isSuccess && user ? (
         <div className="flex flex-col gap-4">
-          <div className="flex justify-between items-center ">
-            <p className="font-bold text-[#41b6de]">{session?.user?.email}</p>
-            {session?.user?.image ? (
-              <Image
-                src={session.user.image}
-                alt="Profile"
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-            ) : (
-              <Image
-                src="/Auth/no-user.png"
-                alt="Profile"
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-            )}
+          <div className="flex justify-between items-center">
+            <p className="font-bold text-[#41b6de]">{user.email}</p>
+            <Image
+              src={user.image || "/no-user.png"}
+              alt="User"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
           </div>
 
           <MobileProfileMenu />
 
-          <div>LOGOUT</div>
+          <SignOutButton/>
         </div>
       ) : (
         <Link
-          href="/login"
+          href="/sign-in"
           className="transition-all duration-200 rounded-md border-0 bg-[#41b6de] text-white font-bold hover:shadow-buttonBlueBrick shadow-buttonBlue flex items-center justify-center gap-2 rounded px-4 py-2"
         >
           <FaRegUser className="text-2xl text-xl" />
-          <p className="font-bold">Log in </p>
+          <p className="font-bold">Log in</p>
         </Link>
       )}
     </div>
   );
-}
+};
 
-export default MobileAuthButton
+export default MobileAuthButton;

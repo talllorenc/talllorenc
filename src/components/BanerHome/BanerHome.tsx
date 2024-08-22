@@ -4,7 +4,7 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import { Dancing_Script } from "next/font/google";
-import useAuth from "@/hooks/useAuth";
+
 
 const dansing = Dancing_Script({
   subsets: ["latin"],
@@ -12,11 +12,6 @@ const dansing = Dancing_Script({
 });
 
 const BanerHome = () => {
-
-  const { user, isPending, isSuccess } = useAuth();
-
-  console.log(user);
-  
   return (
     <div className="flex flex-col items-center rounded-lg">
       <Link
