@@ -2,7 +2,7 @@ import axios from "axios";
 import queryClient from "./queryClient";
 
 const options = {
-  baseURL: 'http://localhost:8080',
+  baseURL: "http://localhost:8080",
   withCredentials: true,
 };
 
@@ -23,7 +23,7 @@ API.interceptors.response.use(
         return TokenRefreshClient(config);
       } catch (error) {
         queryClient.clear();
-        window.location.href = "/sign-in";
+        window.location.href= "/sign-in";
       }
     }
 

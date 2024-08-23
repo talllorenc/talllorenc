@@ -5,7 +5,7 @@ import Link from "next/link";
 const LoginPage = () => {
   return (
     <div
-      className="flex flex-col max-w-md mx-auto rounded-xl overflow-hidden border border-neutral-500 dark:border-neutral-200 shadow-buttonDark"
+      className="flex flex-col max-w-md mx-auto rounded-xl overflow-hidden bg-bgLight dark:bg-bgDark shadow-buttonBlue"
     >
       <div className="flex flex-col gap-8 p-8 border-b border-neutral-500 dark:border-neutral-200">
         <div className="flex flex-col items-center justify-center text-center">

@@ -23,11 +23,6 @@ const profileMenuLinks: IMenuLink[] = [
     title: "Dashboard",
     path: "/user/dashboard",
   },
-  {
-    id: 3,
-    title: "Settings",
-    path: "/user/settings",
-  },
 ];
 
 const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
@@ -48,7 +43,7 @@ const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
           exit={{ opacity: 0, translateY: -20 }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex flex-col text-black overflow-auto rounded-xl shadow-buttonDark text-sm">
+          <div className="flex flex-col text-black overflow-auto rounded-xl shadow-buttonBlue text-sm">
             <div className="flex items-center gap-4 bg-white p-4 rounded-t-xl border-b border-neutral-200">
               {isPending ? (
                 <MountedSpinner />

@@ -22,13 +22,8 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const {
-    mutate: signIn,
-    isPending,
-    isError,
-  } = useMutation({
+  const { mutate: signIn, isPending } = useMutation({
     mutationFn: login,
     onSuccess: () => {
       router.push("/");
@@ -80,8 +75,8 @@ const LoginForm = () => {
       <SubmitButton
         text="Log in"
         icon={<FaCaretRight />}
-        buttonColor="#F31260"
-        isDisabled={isLoading}
+        buttonColor="#41b6de"
+        isDisabled={isPending}
       />
 
       {serverError && <FormErrors message={serverError} />}

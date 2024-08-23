@@ -14,8 +14,8 @@ import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import Auth from "@/services/auth.service";
 import { IRegisterUser } from "@/types/AuthForms";
+import { register } from "@/services/auth.service";
 import FormErrors from "./FormErrors";
 import FormSuccess from "./FormSuccess";
 
@@ -44,18 +44,10 @@ const RegisterForm = () => {
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const mutation = useMutation({
-    mutationFn: (regObj: {
-      username: string;
-      email: string;
-      password: string;
-      confirmPassword: string;
-    }) => Auth.signUp(regObj),
+  const { mutate: signUp, isPending } = useMutation({
+    mutationFn: register,
     onSuccess: () => {
-      setIsLoading(false);
-      setServerError(null);
       setSuccessMessage(
         "Registration successful. Please check your email to verify your account."
       );
@@ -65,14 +57,10 @@ const RegisterForm = () => {
       }, 3000);
     },
     onError: (error: any) => {
-      setIsLoading(false);
       setServerError(
         error.response?.data?.message ||
           "Something went wrong. Please try again."
       );
-    },
-    onMutate: () => {
-      setIsLoading(true);
     },
   });
 
@@ -94,7 +82,7 @@ const RegisterForm = () => {
     validationSchema,
     onSubmit: async (values) => {
       setServerError(null);
-      mutation.mutate(values);
+      signUp(values);
     },
   });
 
@@ -150,9 +138,9 @@ const RegisterForm = () => {
       />
       <Button
         text="Sign up"
-        buttonColor="#F31260"
+        buttonColor="#41b6de"
         icon={<FaCaretRight />}
-        isDisabled={isLoading}
+        isDisabled={isPending}
       />
 
       {serverError && <FormErrors message={serverError} />}

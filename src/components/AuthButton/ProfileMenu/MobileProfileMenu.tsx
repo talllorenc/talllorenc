@@ -14,12 +14,7 @@ const mobileHeaderLinks: IUserMenuLink[] = [
     id: 2,
     title: "Dashboard",
     path: "/user/dashboard",
-  },
-  {
-    id: 3,
-    title: "Settings",
-    path: "/user/settings",
-  },
+  }
 ];
 
 const MobileProfileMenu = () => {

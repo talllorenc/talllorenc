@@ -5,6 +5,7 @@ import Image from "next/image";
 import Spinner from "../ui/Spinner";
 import { FaCheckCircle } from "react-icons/fa";
 import FormErrors from "../AuthForms/FormErrors";
+import SignOutButton from "../AuthButton/SignOutButton/SignOutButton";
 const ProfilePage = () => {
   const { user, isPending, isError } = useAuth();
 
@@ -25,8 +26,8 @@ const ProfilePage = () => {
   }
 
   return (
-    <div>
-      <div className="flex items-center gap-4 py-4">
+    <div className="flex flex-col gap-8 shadow-buttonBlue p-4 rounded-xl bg-bgLight dark:bg-bgDark">
+      <div className="flex justify-center md:justify-start items-center gap-4">
         <Image
           src={user?.image || "/no-user.png"}
           alt="User avatar"
@@ -35,7 +36,7 @@ const ProfilePage = () => {
           className="rounded-full"
         />
         <div className="flex flex-col">
-          <p className="font-bold text-xl">{user?.username}</p>
+          <p className="font-bold text-4xl">{user?.username}</p>
           <p>
             {user?.createdAt
               ? new Date(user.createdAt).toLocaleString("en-US")
@@ -44,9 +45,11 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4">
-        <div className="border border-neutral-500 p-4 rounded-xl flex flex-col gap-2 max-w-max">
-          <p className="font-bold border-b border-neutral-500">Email address</p>
+      <div className="flex gap-12 flex-wrap">
+        <div className=" flex flex-col gap-2 max-w-max">
+          <p className="font-bold border-b border-neutral-500 text-xl">
+            Email address
+          </p>
           <div className="flex flex-col">
             <p>{user?.email}</p>
             <div className="flex items-center gap-2 text-green-600 dark:text-green-500">
@@ -55,12 +58,16 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        <div className="border border-neutral-500 p-4 rounded-xl flex flex-col gap-2 max-w-max">
-          <p className="font-bold border-b border-neutral-500">
+        <div className="flex flex-col gap-2 max-w-max">
+          <p className="font-bold border-b border-neutral-500 text-xl">
             Your role on the portal
           </p>
           <p>User</p>
         </div>
+      </div>
+
+      <div className="">
+        <SignOutButton />
       </div>
     </div>
   );

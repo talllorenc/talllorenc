@@ -18,6 +18,10 @@ const config: Config = {
         lg: "1024px",
         xl: "1280px",
       },
+      colors: {
+        bgDark: "#191f29",
+        bgLight: "#e3e8ef"
+      },
       boxShadow: {
         buttonDark: "2px 2px 7px 1px rgba(28,28,28, 0.1)",
         buttonPink: "2px 2px 7px 1px rgba(241,156,187, 1)",
