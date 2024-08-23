@@ -1,11 +1,4 @@
-import { API } from "@/config/API";
-import axios from "axios";
+import API from "@/config/API";
+import { IUser } from "@/types/AuthForms";
 
-class User {
-  getUser() {
-    return axios.get(`${API.user.GETUSER}`, { withCredentials: true });
-  }
-}
-
-const userService = new User();
-export default userService;
+export const getUser = async () : Promise<IUser> => API.get("/user");

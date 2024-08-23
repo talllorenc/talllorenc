@@ -22,4 +22,14 @@ export interface IFormSuccess {
   message?: string;
 }
 
+export interface IUser {
+  _id: string;
+  username: string;
+  verified: boolean;
+  email: string;
+  image?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 

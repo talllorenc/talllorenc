@@ -1,5 +1,4 @@
-import { API } from "@/config/API";
-import axiosInstance from "@/config/axiosInstance";
+import API from "@/config/API";
 
 interface ISignIn {
   email: string;
@@ -13,27 +12,7 @@ interface ISignUp {
   confirmPassword: string;
 }
 
-class Auth {
-  signIn({ email, password }: ISignIn) {
-    return axiosInstance.post(`${API.auth.SIGNIN}`, {
-      email,
-      password,
-    });
-  }
+export const register = async (data : ISignUp) => API.post("/auth/sign-up", data);
+export const login = async (data : ISignIn) => API.post("/auth/sign-in", data);
+export const logout = async () => API.get("/auth/logout");
 
-  signUp({ email, username, password, confirmPassword }: ISignUp) {
-    return axiosInstance.post(`${API.auth.SIGNUP}`, {
-      email,
-      username,
-      password,
-      confirmPassword,
-    });
-  }
-
-  logout(){
-    return axiosInstance.get(`${API.auth.LOGOUT}`)
-  }
-}
-
-const authService = new Auth();
-export default authService;

@@ -1,9 +1,17 @@
-import React from 'react';
+import React from "react";
 
-const Spinner: React.FC = () => {
+interface ISpinnerProps {
+  height?: string;
+  weight?: string;
+}
+
+const Spinner: React.FC<ISpinnerProps> = ({
+  height = "24px",
+  weight = "24px",
+}) => {
   return (
-    <div className="w-6 h-6 flex justify-center items-center">
-      <div className="border-2 border-t-2 border-gray-200 border-t-blue-500 rounded-full animate-spin w-6 h-6"></div>
+    <div style={{ height: height, width: weight }} className="flex justify-center items-center">
+      <div style={{ height: height, width: weight }} className="border-2 border-t-2 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
     </div>
   );
 };

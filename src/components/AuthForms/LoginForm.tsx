@@ -8,7 +8,7 @@ import Input from "../ui/Input";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import Auth from "@/services/auth.service";
+import { login } from "@/services/auth.service";
 import { ILoginUser } from "@/types/AuthForms";
 import FormErrors from "./FormErrors";
 
@@ -24,25 +24,17 @@ const LoginForm = () => {
   const [serverError, setServerError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const mutation = useMutation({
-    mutationFn: (regObj: {
-      email: string;
-      password: string;
-    }) => Auth.signIn(regObj),
+  const {
+    mutate: signIn,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationFn: login,
     onSuccess: () => {
-      setIsLoading(false);
-      setServerError(null);
       router.push("/");
     },
     onError: (error: any) => {
-      setIsLoading(false);
-      setServerError(
-        error.response?.data?.message ||
-          "Something went wrong. Please try again."
-      );
-    },
-    onMutate: () => {
-      setIsLoading(true);
+      setServerError(error.message || "An error occurred");
     },
   });
 
@@ -55,7 +47,7 @@ const LoginForm = () => {
       validationSchema,
       onSubmit: async (values) => {
         setServerError(null);
-        mutation.mutate(values);
+        signIn(values);
       },
     });
 

@@ -13,7 +13,7 @@ interface IAuthButtonProps {
 const AuthButton = ({ closeMobileMenu }: IAuthButtonProps) => {
   const { user, isPending, isSuccess, isError } = useAuth();
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
-
+  
   const toggleMenu = (): void => {
     setMenuOpen(!isMenuOpen);
   };
@@ -23,9 +23,7 @@ const AuthButton = ({ closeMobileMenu }: IAuthButtonProps) => {
   };
 
   if (isPending) {
-    return (
-      <MountedSpinner/>
-    );
+    return <MountedSpinner />;
   }
 
   if (isSuccess && user) {
@@ -37,12 +35,11 @@ const AuthButton = ({ closeMobileMenu }: IAuthButtonProps) => {
         >
           <Image
             src={user.image || "/no-user.png"}
-            alt={user.name || "User avatar"}
+            alt="User avatar"
             width={40}
             height={40}
             className="rounded-full"
           />
-          <p className="font-bold">{user.name}</p>
         </div>
         <ProfileMenu isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
       </div>

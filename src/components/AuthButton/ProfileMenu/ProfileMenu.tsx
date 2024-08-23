@@ -3,10 +3,8 @@ import Link from "next/link";
 import { IMenuLink } from "@/types/Menus";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { FaCog } from "react-icons/fa";
 import SignOutButton from "../SignOutButton/SignOutButton";
 import useAuth from "@/hooks/useAuth";
-import { Spinner } from "@nextui-org/react";
 import MountedSpinner from "@/components/ui/MountedSpinner";
 
 interface IMobileHeaderProps {
@@ -53,7 +51,7 @@ const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
           <div className="flex flex-col text-black overflow-auto rounded-xl shadow-buttonDark text-sm">
             <div className="flex items-center gap-4 bg-white p-4 rounded-t-xl border-b border-neutral-200">
               {isPending ? (
-                <MountedSpinner/>
+                <MountedSpinner />
               ) : isSuccess && user ? (
                 <>
                   <Image
@@ -64,8 +62,8 @@ const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
                     className="rounded-full"
                   />
                   <div className="flex flex-col overflow-hidden">
-                    <p className="truncate font-medium">{user.email}</p>
-                    <p className="truncate text-gray-500">{user.username}</p>
+                    <p className="truncate font-medium">{user.username}</p>
+                    <p className="truncate ">{user.email}</p>
                   </div>
                 </>
               ) : (
@@ -87,7 +85,6 @@ const ProfileMenu = ({ isMenuOpen, closeMenu }: IMobileHeaderProps) => {
                   </Link>
                 ))}
               </div>
-
               <SignOutButton />
             </div>
           </div>

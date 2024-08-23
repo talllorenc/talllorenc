@@ -2,42 +2,46 @@
 
 import { FaSignOutAlt } from "react-icons/fa";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Auth from "@/services/auth.service";
-import { useRouter } from "next/navigation";
+import { logout } from "@/services/auth.service";
 import { useState } from "react";
 import Spinner from "@/components/ui/Spinner";
 
 const SignOutButton = () => {
-  const router = useRouter();
   const queryClient = useQueryClient();
-  const [serverError, setServerError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const mutation = useMutation({
-    mutationFn: () => Auth.logout(),
+  const { mutate: signOut } = useMutation({
+    mutationFn: logout,
     onMutate: () => {
       setIsLoading(true);
     },
     onSettled: () => {
       queryClient.clear();
       setIsLoading(false);
-      window.location.href = "/";
+      window.location.href = "/sign-in";
     },
   });
 
   const handleSignOut = () => {
-    mutation.mutate();
+    signOut();
   };
 
   return (
     <button
-      className="flex items-center gap-4 p-4 rounded-b-xl text-red-500 hover:bg-neutral-300 transition-all duration-200"
+      className={`flex items-center justify-center w-full p-4 text-red-500 hover:bg-red-100 transition-all duration-200 ${
+        isLoading ? "cursor-not-allowed opacity-80" : "cursor-pointer"
+      }`}
       onClick={handleSignOut}
       disabled={isLoading}
     >
-      {isLoading ? <Spinner /> : <FaSignOutAlt />}
-      <p>Sign out</p>
-      {serverError && <p className="text-red-500">{serverError}</p>}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="flex items-center gap-2">
+          <p>Sign out</p>
+          <FaSignOutAlt />
+        </div>
+      )}
     </button>
   );
 };
