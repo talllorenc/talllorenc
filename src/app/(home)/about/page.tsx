@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Layout from "@/components/Layout/Layout";
 import { Dancing_Script } from "next/font/google";
+import AboutPage from "@/components/Pages/AboutPage";
 
 const dansing = Dancing_Script({
   subsets: ["latin"],
@@ -20,12 +21,21 @@ export const metadata: Metadata = {
   },
 };
 
-const AboutPage = async () => {
+const page = async () => {
   return (
     <Layout>
-      <h1 className={`text-6xl font-bold mb-8 ${dansing.className}`}>About</h1>
+      <div
+        className="w-full h-64 bg-cover bg-bottom flex items-center justify-center rounded-full shadow-buttonBlue"
+        style={{ backgroundImage: "url('/about-bg.jpg')" }}
+      >
+        <h1 className={`text-6xl font-bold ${dansing.className}`}>
+          About portal
+        </h1>
+      </div>
+
+      <AboutPage/>
     </Layout>
   );
 };
 
-export default AboutPage;
+export default page;

@@ -6,6 +6,13 @@ import Spinner from "../ui/Spinner";
 import { FaCheckCircle } from "react-icons/fa";
 import FormErrors from "../AuthForms/FormErrors";
 import SignOutButton from "../AuthButton/SignOutButton/SignOutButton";
+import { Dancing_Script } from "next/font/google";
+
+const dansing = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
 const ProfilePage = () => {
   const { user, isPending, isError } = useAuth();
 
@@ -19,7 +26,7 @@ const ProfilePage = () => {
 
   if (isPending) {
     return (
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center">
         <Spinner height="100px" weight="100px" />
       </div>
     );
@@ -27,6 +34,9 @@ const ProfilePage = () => {
 
   return (
     <div className="flex flex-col gap-8 shadow-buttonBlue p-4 rounded-xl bg-bgLight dark:bg-bgDark">
+      <h1 className={`text-6xl font-bold mb-8 ${dansing.className}`}>
+        Profile
+      </h1>
       <div className="flex justify-center md:justify-start items-center gap-4">
         <Image
           src={user?.image || "/no-user.png"}

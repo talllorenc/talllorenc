@@ -1,5 +1,4 @@
 import axios from "axios";
-import queryClient from "./queryClient";
 
 const options = {
   baseURL: "http://localhost:8080",
@@ -7,27 +6,30 @@ const options = {
 };
 
 const TokenRefreshClient = axios.create(options);
-TokenRefreshClient.interceptors.response.use((response) => response.data);
-
 const API = axios.create(options);
 
 API.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    return response.data;
+  },
   async (error) => {
-    const { config, response } = error;
-    const { status, data } = response || {};
+    const originalConfig = error.config;
+    if (error.response) {
+      if (error.response.status === 401 ||
+        error.response.data.message === "Not authorized" ||
+        (error.response.data.message === "InvalidAccessToken" && error.config && !error.config._retry)) {
 
-    if (status === 401 && data?.message === "InvalidAccessToken") {
-      try {
-        await TokenRefreshClient.get("/auth/refresh");
-        return TokenRefreshClient(config);
-      } catch (error) {
-        queryClient.clear();
-        window.location.href= "/sign-in";
+        originalConfig._retry = true;
+
+        try {
+          await TokenRefreshClient.get("/auth/refresh");
+          return API(originalConfig);
+        } catch (error) {
+          return Promise.reject(error);
+        }
       }
     }
-
-    return Promise.reject({ status, ...data });
+    return Promise.reject(error);
   }
 );
 

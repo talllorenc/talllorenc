@@ -1,19 +1,12 @@
-import Layout from "@/components/Layout/Layout";
-import { Dancing_Script } from "next/font/google";
+import UserLayout from "@/components/Layout/UserLayout";
+import DashBoardPage from "@/components/Pages/DashBoardPage";
 
-const dansing = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
-
-const DashboardPage = async () => {
+const page = async () => {
   return (
-    <Layout>
-      <h1 className={`text-6xl font-bold mb-8 ${dansing.className}`}>
-        Dashboard
-      </h1>
-    </Layout>
+    <UserLayout>
+      <DashBoardPage/>
+    </UserLayout>
   );
 };
 
-export default DashboardPage;
+export default page;
